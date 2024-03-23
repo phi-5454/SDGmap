@@ -20,14 +20,10 @@ const pinLibrary = {
     name: "Flooded street",
     lifetime: -1,
     icon: (
-      <div className="icon-container">
-        <div className="icon-text bg-red-600 border-white border-2 text-blue-200">
-          AAA
+      <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
+        <div className="icon-text text-2xl  p-1  text-stone-200">
+          <FontAwesomeIcon icon={fas.faWater} />
         </div>
-        <FontAwesomeIcon
-          className="text-xl text-amber-700"
-          icon={fas.faBoltLightning}
-        />
       </div>
     ),
   },
@@ -37,11 +33,10 @@ const pinLibrary = {
     name: "Slippery walkway",
     lifetime: -1,
     icon: (
-      <div className="icon-container">
-        <div className="icon-text bg-red-600 border-white border-2 text-blue-200">
-          AAA
+      <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
+        <div className="icon-text text-2xl  p-1  text-stone-200">
+          <FontAwesomeIcon icon={fas.faBoltLightning} />
         </div>
-        <FontAwesomeIcon icon={fas.faPersonFalling} />
       </div>
     ),
   },
@@ -51,11 +46,10 @@ const pinLibrary = {
     name: "Exposed powerline",
     lifetime: -1,
     icon: (
-      <div className="icon-container">
-        <div className="icon-text bg-red-600 border-white border-2 text-blue-200">
-          AAA
+      <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
+        <div className="icon-text text-2xl  p-1  text-stone-200">
+          <FontAwesomeIcon icon={fas.faPersonFalling} />
         </div>
-        <FontAwesomeIcon icon={fas.faElectricity} />
       </div>
     ),
   },
