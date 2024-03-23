@@ -13,6 +13,20 @@ function getPinType (pinTypeStr) {
       return pinLibrary.HouseFlood
     case "Slippery":
       return pinLibrary.Slippery
+    case "Pothole":
+      return pinLibrary.Pothole
+    case "ExposedSewage":
+        return pinLibrary.ExposedSewage
+    case "CollapsedBuilding":
+        return pinLibrary.CollapsedBuilding
+    case "WildAnimal":
+        return pinLibrary.WildAnimal
+    case "DelerictBuilding":
+        return pinLibrary.DelerictBuilding
+    case "CarAccident":
+        return pinLibrary.CarAccident
+    case "RoadBarrier":
+        return pinLibrary.RoadBarrier
     default:
       return pinLibrary.Slippery
   }

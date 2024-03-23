@@ -47,7 +47,6 @@ function MapEvents({ setPins, pins }) {
       timePinned: 0,
       comment: alertMessages[Math.floor(Math.random() * alertMessages.length)]
     });
-    console.log(pushedPins)
 
     await axios.post("https://api.npoint.io/6702b7c729b99c15d863", { pins: pushedPins })
     setPins(pushedPins);
