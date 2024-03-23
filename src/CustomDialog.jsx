@@ -84,7 +84,9 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       }}
       TransitionComponent={Transition}
     >
-      <DialogTitle>Add pin</DialogTitle>
+      <DialogTitle variant="h4" style={{ textAlign: "center" }}>
+        Add pin
+      </DialogTitle>
 
       <SimpleListMenu pinLibrary={pinLibrary} />
       <DialogContent>
