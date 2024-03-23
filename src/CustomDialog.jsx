@@ -81,13 +81,11 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       onClose={() => setOpen(false)}
       TransitionComponent={Transition}
     >
-      <DialogTitle>Add pin</DialogTitle>
+      <DialogTitle
+       variant="h4"
+       style={{ textAlign: "center" }} 
+      >Add pin</DialogTitle>
 
-      {Object.entries(pinLibrary).map((p) => {
-        return (
-          <PinMenuItem pinType={p[1]} key={Math.floor(Math.random() * 100000)} />
-        );
-      })}
       <SimpleListMenu pinLibrary={pinLibrary}/>
       <DialogContent>
         {/* <BasicMenu category={category} setCategory={setCategory} /> */}
@@ -97,7 +95,7 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
           <FormHelperText id="my-helper-text">
             Describe the situation.
           </FormHelperText>
-          <Button onClick={() => pinFormSubmit(category)}>Add</Button>
+          <Button onClick={() => pinFormSubmit(category, )}>Add</Button>
         </FormControl>
       </DialogContent>
     </Dialog>
