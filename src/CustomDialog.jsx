@@ -20,12 +20,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const PinMenuItem = (pinType) => {
+const PinMenuItem = ( {pinType }) => {
+  console.log(pinType)
   return (
     <div className="flex m-1 p-2 border-stone-700 border-2 rounded-s border-3">
-      {getPinType(pinType).icon}
+      {pinType.icon}
       <div className="p-2 text-l inline-block w-full text-center align-middle">
-        {getPinType(pinType).name}
+        {pinType.name}
       </div>
     </div>
   );
@@ -86,7 +87,7 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
 
       {Object.entries(pinLibrary).map((p) => {
         return (
-          <PinMenuItem props={p[1]} key={Math.floor(Math.random() * 100000)} />
+          <PinMenuItem pinType={p[1]} key={Math.floor(Math.random() * 100000)} />
         );
       })}
       <DialogContent>
