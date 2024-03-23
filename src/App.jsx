@@ -54,8 +54,6 @@ function App() {
           <>
             <Leaflet pins={pins} setPins={setPins} class="leaflet-container" />
             <CustomToolbar class='toolbar'/>
-            <Leaflet pins={pins} setPins={setPins} class="leaflet-container" />
-            <CustomToolbar class='toolbar'/>
             <UsersPins class='pinbar'/>
           </>
         </animated.div>
