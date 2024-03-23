@@ -17,6 +17,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import pinLibrary from "./pinInfo";
 
+const customIcon = L.divIcon({
+  className: "custom-icon",
+  html: renderToStaticMarkup(pinLibrary.Slippery.icon),
+  iconSize: [50, 50], // Adjust the icon size as needed
+});
+
 const makeIcon = (markup) => {
   return L.divIcon({
     className: "custom-icon",
@@ -24,12 +30,6 @@ const makeIcon = (markup) => {
     iconSize: [50, 50], // Adjust the icon size as needed
   });
 };
-
-const customIcon = L.divIcon({
-  className: "custom-icon",
-  html: renderToStaticMarkup(pinLibrary.Slippery.icon),
-  iconSize: [50, 50], // Adjust the icon size as needed
-});
 
 function MapEvents({ setPins, pins }) {
   //console.log(pinLibrary);

@@ -14,14 +14,14 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Category } from "./pinInfo";
+import pinLibrary from "./pinInfo";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const pinMenuItem = (pinType) => {
-  return;
-  <div></div>;
+const PinMenuItem = (pinType) => {
+  return <div className="flex">{pinType.icon}</div>;
 };
 
 function BasicMenu({ category }) {
@@ -75,6 +75,7 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       onClose={() => setOpen(false)}
       TransitionComponent={Transition}
     >
+      <PinMenuItem props={pinLibrary.Slippery} />
       <DialogTitle>Add pin</DialogTitle>
       <DialogContent>
         <BasicMenu category={category} setCategory={setCategory} />
