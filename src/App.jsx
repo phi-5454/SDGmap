@@ -15,7 +15,7 @@ import axios from "axios";
 
 function App() {
 
-  const [pins, setPins] = useState(pinsOnMap);
+  const [pins, setPins] = useState([]);
   const [showIcon, setShowIcon] = useState(true); 
 
   axios.get("https://api.npoint.io/6702b7c729b99c15d863").then(
@@ -45,7 +45,7 @@ function App() {
         {showIcon && (
           <div className="loading-screen-background">
             <FontAwesomeIcon className="loading-screen" icon={faMapPin} bounce color="#FF5733"/>
-            <h1 className="site-name">CityWorkshop</h1>
+            <h1 className="site-name">CityAlert</h1>
           </div>
         )}
         <animated.div className="fade-out" style={appProps}>
