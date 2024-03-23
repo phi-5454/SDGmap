@@ -23,6 +23,8 @@ function App() {
     (response) => {
       setPins(response?.data.pins)
       return response?.data.pins
+    }).catch((error) => {
+      console.log(error)
     }
   )}, []);
   
