@@ -13,21 +13,83 @@ const Category = {
   Other: "Other",
 };
 
-const pinLibrary = [
-  {
+const pinLibrary = {
+  StreetFlood: {
     key: 0,
-    name: "Flooded street",
     category: Category.Damage,
+    name: "Flooded street",
+    lifetime: -1,
     icon: (
       <div className="icon-container">
         <div className="icon-text bg-red-600 border-white border-2 text-blue-200">
           AAA
         </div>
-        <FontAwesomeIcon icon={fas.faHouse} />
+        <FontAwesomeIcon
+          className="text-xl text-amber-700"
+          icon={fas.faBoltLightning}
+        />
       </div>
     ),
   },
+  Slippery: {
+    key: 1,
+    category: Category.Hazard,
+    name: "Slippery walkway",
+    lifetime: -1,
+    icon: (
+      <div className="icon-container">
+        <div className="icon-text bg-red-600 border-white border-2 text-blue-200">
+          AAA
+        </div>
+        <FontAwesomeIcon icon={fas.faPersonFalling} />
+      </div>
+    ),
+  },
+  ExposedPower: {
+    key: 2,
+    category: Category.Hazard,
+    name: "Exposed powerline",
+    lifetime: -1,
+    icon: (
+      <div className="icon-container">
+        <div className="icon-text bg-red-600 border-white border-2 text-blue-200">
+          AAA
+        </div>
+        <FontAwesomeIcon icon={fas.faElectricity} />
+      </div>
+    ),
+  },
+};
+
+const pinsOnMap = [
+  {
+    pinType: pinLibrary.Slippery,
+    coordinates: [60.186449, 24.828243],
+    timePinned: 0,
+  },
+  {
+    pinType: pinLibrary.ExposedPower,
+    coordinates: [60.185449, 24.827243],
+    timePinned: 1,
+  },
+  {
+    pinType: pinLibrary.StreetFlood,
+    coordinates: [60.18303034581267, 24.8241662979126],
+    timePinned: 1,
+  },
+  {
+    pinType: pinLibrary.StreetFlood,
+    coordinates: [60.18569880541803, 24.83596801757813],
+    timePinned: 1,
+  },
+  {
+    pinType: pinLibrary.StreetFlood,
+    coordinates: [60.190586860862716, 24.831547737121586],
+    timePinned: 1,
+  },
 ];
+
+const getPinsOnMap = pinsOnMap;
 
 const createPinData = () => {
   return {
@@ -59,5 +121,5 @@ const getPinInfo = () => {};
 
 const savePinInfo = (pin) => {};
 
-//export default { getPinInfo, savePinInfo, pinLibrary };
+export { pinsOnMap };
 export default pinLibrary;

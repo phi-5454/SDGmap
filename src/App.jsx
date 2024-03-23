@@ -1,14 +1,11 @@
 import "./App.css";
 import Leaflet from "./Leaflet";
 import { useState } from "react";
-import CustomToolbar from "./ToolBar"
+import CustomToolbar from "./ToolBar";
+import { pinsOnMap } from "./pinInfo";
 
 function App() {
-  const [pins, setPins] = useState([
-    {
-      coordinates: [60.186449, 24.828243],
-    },
-  ]);
+  const [pins, setPins] = useState(pinsOnMap);
 
   return (
     <>
@@ -19,3 +16,4 @@ function App() {
 }
 
 export default App;
+
