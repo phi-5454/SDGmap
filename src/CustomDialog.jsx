@@ -83,7 +83,13 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       TransitionComponent={Transition}
     >
       <DialogTitle>Add pin</DialogTitle>
-      <PinMenuItem props={pinLibrary.Slippery} />
+
+      {Object.entries(pinLibrary).map((p) => {
+        console.log("AAA", p);
+        return (
+          <PinMenuItem props={p[1]} key={Math.floor(Math.random() * 100000)} />
+        );
+      })}
       <DialogContent>
         <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
