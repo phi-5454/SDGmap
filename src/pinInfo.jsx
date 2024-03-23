@@ -45,14 +45,14 @@ const pinLibrary = {
     category: Category.Hazard,
     name: "Slippery street",
     lifetime: -1,
-    icon: itemFactory(fas.faBoltLightning),
+    icon: itemFactory(fas.faPersonFalling),
   },
   ExposedPower: {
     key: 2,
     category: Category.Hazard,
     name: "Exposed powerline",
     lifetime: -1,
-    icon: itemFactory(fas.faPersonFalling),
+    icon: itemFactory(fas.faBoltLightning),
   },
 };
 
