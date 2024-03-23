@@ -15,6 +15,7 @@ import { Category } from "./pinInfo";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import pinLibrary from "./pinInfo";
+import axios from "axios";
 
 const customIcon = L.divIcon({
   className: "custom-icon",
@@ -34,7 +35,7 @@ function MapEvents({ setPins, pins }) {
   const [open, setOpen] = useState(false);
   const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 });
 
-  const pinFormSubmit = (category) => {
+  const pinFormSubmit = async (category) => {
     setOpen(false);
     const newPinType = (() => {
       if (category === Category.Hazard) {
@@ -57,6 +58,8 @@ function MapEvents({ setPins, pins }) {
       coordinates: [currCoords.lat, currCoords.lng],
       timePinned: 0,
     });
+
+    await axios.post("https://api.npoint.io/6702b7c729b99c15d863", {pins: pushedPins })
     setPins(pushedPins);
   };
 

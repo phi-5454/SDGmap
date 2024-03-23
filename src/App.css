@@ -27,7 +27,7 @@
   margin: 0;
   padding: 0;
   z-index: 1001;
-  animation: colorChange 1s infinite;
+  animation: colorChange 2s infinite;
 }
 
 .loading-screen-background {

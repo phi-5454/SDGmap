@@ -9,23 +9,34 @@ import { useSpring, animated } from 'react-spring';
 import UsersPins from "./UsersPins";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
+import axios from "axios";
+
+
 
 function App() {
+
   const [pins, setPins] = useState(pinsOnMap);
-  const [showIcon, setShowIcon] = useState(true); // State to control the visibility of the FontAwesomeIcon
+  const [showIcon, setShowIcon] = useState(true); 
+
+  axios.get("https://api.npoint.io/6702b7c729b99c15d863").then(
+    (response) => {
+      setPins(response.data.pins)
+      return response.data.pins
+    }
+  )
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowIcon(false); // Hide the icon after 2 seconds
-    }, 3000); // 2000 milliseconds = 2 seconds
+      setShowIcon(false); 
+    }, 2000); 
 
-    return () => clearTimeout(timer); // Clean up the timer
-  }, []); // Empty dependency array means this effect runs only once after the initial render
+    return () => clearTimeout(timer);
+  }, []);
 
   const appProps = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
-    delay: 3000,
+    delay: 2000,
   });
 
   return (
@@ -34,7 +45,7 @@ function App() {
         {showIcon && (
           <div className="loading-screen-background">
             <FontAwesomeIcon className="loading-screen" icon={faMapPin} bounce color="#FF5733"/>
-            <h1 className="site-name">CityWorkshop</h1>
+            <h1 className="site-name">CityAlert</h1>
           </div>
         )}
         <animated.div className="fade-out" style={appProps}>
