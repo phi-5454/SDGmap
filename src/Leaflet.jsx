@@ -5,18 +5,21 @@ import CustomDialog from './CustomDialog';
 import { LatLng } from 'leaflet';
 import { mapTilerApi } from './constants';
 
-function MapEvents() {
+function MapEvents( { setPins, pins }) {
     const [open, setOpen] = useState(false)
     const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 })
  
     const pinFormSubmit = (e) => {
         setOpen(false)
-        console.log("submitted")
+        console.log(currCoords)
+        console.log(pins)
+        const pushedPins = pins.concat({ coordinates: [currCoords.lat, currCoords.lng] })
+        console.log(pushedPins)
+        setPins(pushedPins)
     }
 
     const map = useMapEvents({
         click(e) {
-            console.log(e.latlng)
             setCurrCoords(e.latlng)
             setOpen(true)
         }
@@ -54,7 +57,7 @@ function Leaflet({ pins, setPins }) {
                     url={mapTilerApi}
                 />
                 {pins.map((pin) => addPin(pin.coordinates))}
-                <MapEvents />
+                <MapEvents setPins={setPins} pins={pins} />
                 
             </MapContainer>
         </>
