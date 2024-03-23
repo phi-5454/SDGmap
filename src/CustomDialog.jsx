@@ -72,7 +72,7 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
     >
       <DialogTitle>Add pin</DialogTitle>
       <DialogContent>
-        {open ? <BasicMenu category={category} setCategory={setCategory} /> : null}
+        <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
           Latitude: {currCoords.lat.toFixed(2)}
         </Typography> 

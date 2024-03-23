@@ -13,8 +13,6 @@ import { mapTilerApi } from "./constants";
 import { Category } from "./pinInfo";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import pinLibrary from "./pinInfo";
 
 const makeIcon = (markup) => {
