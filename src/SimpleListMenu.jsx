@@ -12,7 +12,7 @@ const options = [
   "Hide all notification content",
 ];
 
-export default function SimpleListMenu({ pinLibrary }) {
+export default function SimpleListMenu({ pinLibrary, pinSetFunc }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const open = Boolean(anchorEl);
@@ -22,6 +22,7 @@ export default function SimpleListMenu({ pinLibrary }) {
 
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
+    pinSetFunc(index);
     setAnchorEl(null);
   };
 
@@ -80,4 +81,3 @@ export default function SimpleListMenu({ pinLibrary }) {
     </div>
   );
 }
-
