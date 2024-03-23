@@ -66,15 +66,16 @@ function MapEvents({ setPins, pins }) {
   );
 }
 
-function AddPin({ pin, icon }) {
-  let coordinates = pin.coordinates;
-  let category = getPinType(pin.pinType).category;
-  let name = getPinType(pin.pinType).name;
-  let textVar = "";
-  let timeVar = "";
+function AddPin({pin, pins, icon}) {
 
-  if (pin.comment) {
-    textVar = pin.comment;
+  let coordinates = pin.coordinates
+  let category = getPinType(pin.pinType).category
+  let name = getPinType(pin.pinType).name 
+  let textVar = ""
+  let timeVar = ""
+  
+  if (pin.comment){
+    textVar = pin.comment
   }
 
   if (pin.time) {
@@ -86,19 +87,28 @@ function AddPin({ pin, icon }) {
     time: timeVar,
   };
 
-  const [comments, setComments] = useState([commentObj]);
-  const [newComment, setNewComment] = useState([]);
+  console.log(pin)
 
-  const handleNewCommentChange = (e) => setNewComment(e.target.value);
-  const addNewComment = () => {
+  const [comments, setComments] = useState([...pin.userComments])
+  const [newComment, setNewComment] = useState([])
+
+  const handleNewCommentChange = (e) => setNewComment(e.target.value)
+  const addNewComment = async () => {
     if (newComment.trim()) {
       const commentObj = {
         text: newComment.trim(),
         time: new Date().toDateString(),
       };
 
-      setComments([...comments, commentObj]);
-      setNewComment("");
+      console.log(pin.userComments.concat(commentObj))
+
+      pin.userComments = pin.userComments.concat(commentObj)
+      const newPins = pins.map((p) => p.coordinates === coordinates ? pin : p)
+
+      await axios.post("https://api.npoint.io/6702b7c729b99c15d863", { pins: newPins })
+
+      setComments([...comments, commentObj])
+      setNewComment("")
     }
   };
 
