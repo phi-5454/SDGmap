@@ -14,9 +14,13 @@ import { mapTilerApi } from "./constants";
 import { Category } from "./pinInfo";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import pinLibrary from "./pinInfo";
+
+const customIcon = L.divIcon({
+  className: "custom-icon",
+  html: renderToStaticMarkup(pinLibrary.Slippery.icon),
+  iconSize: [50, 50], // Adjust the icon size as needed
+});
 
 const makeIcon = (markup) => {
   return L.divIcon({
@@ -25,12 +29,6 @@ const makeIcon = (markup) => {
     iconSize: [50, 50], // Adjust the icon size as needed
   });
 };
-
-const customIcon = L.divIcon({
-  className: "custom-icon",
-  html: renderToStaticMarkup(pinLibrary.Slippery.icon),
-  iconSize: [50, 50], // Adjust the icon size as needed
-});
 
 function MapEvents({ setPins, pins }) {
   const [open, setOpen] = useState(false);
@@ -92,7 +90,7 @@ function Leaflet({ pins, setPins }) {
         
     return (
       <Marker
-        key={Math.random(0, 100)}coordinates
+        key={coordinates[0] + coordinates[1]}
         icon={icon}
         position={coordinates}
         riseOnHover

@@ -11,22 +11,27 @@ import {
   DialogContent,
 } from "@mui/material";
 import * as React from "react";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { Category } from "./pinInfo";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import pinLibrary, { Category } from "./pinInfo";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function BasicMenu( { category, setCategory } ) {
+const PinMenuItem = (pinType) => {
+  console.log(pinType);
+  return <div>{pinType.props.icon}</div>;
+};
+
+function BasicMenu({ category, setCategory }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (category) => {
-    setCategory(category)
+    setCategory(category);
     setAnchorEl(null);
   };
 
@@ -34,13 +39,13 @@ function BasicMenu( { category, setCategory } ) {
     <div>
       <Button
         id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
         <Typography variant="subtitle1">
-          {(!category || false) ? "Category" : category}
+          {!category || false ? "Category" : category}
         </Typography>
       </Button>
       <Menu
@@ -49,7 +54,7 @@ function BasicMenu( { category, setCategory } ) {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button',
+          "aria-labelledby": "basic-button",
         }}
       >
         {Object.keys(Category).map((category) => (
@@ -71,26 +76,24 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       TransitionComponent={Transition}
     >
       <DialogTitle>Add pin</DialogTitle>
+      <PinMenuItem props={pinLibrary.Slippery} />
       <DialogContent>
-        {open ? <BasicMenu category={category} setCategory={setCategory} /> : null}
+        <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
           Latitude: {currCoords.lat.toFixed(2)}
         </Typography> 
         <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>*/}
         <FormControl>
-            
-            <InputLabel htmlFor="my-input">Description</InputLabel>
-            <Input id="my-input" aria-describedby="my-helper-text" />
-            <FormHelperText id="my-helper-text">
+          <InputLabel htmlFor="my-input">Description</InputLabel>
+          <Input id="my-input" aria-describedby="my-helper-text" />
+          <FormHelperText id="my-helper-text">
             Describe the situation.
-            </FormHelperText>
+          </FormHelperText>
           <Button onClick={() => pinFormSubmit(category)}>Add</Button>
         </FormControl>
-        
       </DialogContent>
     </Dialog>
   );
 }
 
 export default CustomDialog;
-
