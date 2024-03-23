@@ -1,83 +1,22 @@
 #root {
   text-align: center;
-  height: 100vw;
-  height: 100vh;
+  height: 100%;
+  height: 100%;
 }
 
 .leaflet-container {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 0;
 }
 
 .full-height-map {
-  height: 100vh;
+  height: 100%;
+  width: 100%;
 }
 
-.toolbar {
-  display: flex;
 
-  
-  top: 90%;
-  left: 0%;
-  
-  padding: 1vw 2vh;
-  height: 10vh;
-  width: 50vw;
-  z-index: 1;
-  border-radius: 2vw;
-
-
-  background-color: darkblue;
-  
-  justify-content: space-between;
-  align-items: center;
-}
-.toolbar.collapsed {
-
-
-  display: flex;
-  position: fixed;
-  
-  top: 90%;
-  left: 0%;
-
-  justify-content: space-between;
-  align-items: center;
-
-  width: 7vw;
-  height: 10vh; 
-  transition: width 0.2s linear;
-}
-
-/* Assuming expanded state should show more content or a different layout */
-.toolbar.expanded {
-  /* Adjusted styles for when the toolbar is expanded */
-  width: 50vw; /* Example: reverting to original width */
-  display: flex;
-  position: fixed;
-  
-  top: 90%;
-  left: 0%;
-  transition: width 0.2s linear;
-}
-
-/* Base state of the icons - hidden */
-.toolbar-icon {
-  display: 'flex';
-  flex-direction: 'column';
-  align-items: 'center';
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.2s; /* Adjust delay to match toolbar's */
-}
-
-.toolbar.expanded .toolbar-icon {
-  opacity: 1;
-  visibility: visible;
-  
-}
 
 
 body {

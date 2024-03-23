@@ -1,0 +1,49 @@
+.pinbar {
+  display: flex;
+  position: fixed;
+
+  top: 10px;
+  left: 50px;
+
+  
+  padding: 10px 10px;
+  height: 300px; /* Height to expand */
+  width: 130px;
+  z-index: 1;
+  border-radius: 20px;
+  
+  background-color: darkblue;
+  
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column-reverse;
+
+  
+}
+
+.pinbar.collapsed {
+
+  height: 80px; /* Smaller height for the collapsed state */
+  
+  transition: top 0.2s ease-in-out, height 0.2s ease-in-out; /* Include height in the transition if it changes */
+}
+
+.pinbar.expanded {
+
+  transition: top 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+
+.pinbar-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s; /* Adjust timing if necessary */
+}
+
+.pinbar.expanded .pinbar-icon {
+  opacity: 1;
+  visibility: visible;
+}
+
