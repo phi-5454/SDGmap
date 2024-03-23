@@ -83,7 +83,6 @@ function App() {
           <>
             <Leaflet pins={filteredPins} setPins={setPins} class="leaflet-container" />
             <CustomToolbar class='toolbar' onChange={handleFilter}/>
-            <UsersPins class='pinbar'/>
           </>
         </animated.div>
       </div>
