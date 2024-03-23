@@ -83,7 +83,7 @@ function Leaflet({ pins, setPins }) {
   function addPin(coordinates, icon) {
     return (
       <Marker
-        key={Math.random(0, 100)}
+        key={coordinates[0] + coordinates[1]}
         icon={icon}
         position={coordinates}
         riseOnHover
