@@ -26,7 +26,7 @@ function CustomToolbar() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              ml: 1,
+              ml: 0.5
             }}
           >
             <IconButton
@@ -50,7 +50,7 @@ function CustomToolbar() {
                   color="inherit"
                   aria-label="cat"
                 >
-                  <FontAwesomeIcon icon={fas.faCat} />
+                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faCat} />
                 </IconButton>
               </Box>
               <Box>
@@ -61,12 +61,10 @@ function CustomToolbar() {
                   color="inherit"
                   aria-label="home"
                 >
-                  <FontAwesomeIcon icon={fas.faHouse} />
+                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faHouse} />
                 </IconButton>
               </Box>
-              <Typography className="toolbar-icon" variant="h6" component="div">
-                App Name
-              </Typography>
+              
             </>
           )}
         </Toolbar>

@@ -12,8 +12,20 @@ import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function App() {
-  const [pins, setPins] = useState(pinsOnMap);
+  const [pins, setPins] = useState([]);
   const [showIcon, setShowIcon] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get("https://api.npoint.io/6702b7c729b99c15d863")
+      .then((response) => {
+        setPins(response?.data.pins);
+        return response?.data.pins;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     axios.get("https://api.npoint.io/6702b7c729b99c15d863").then((response) => {
@@ -49,8 +61,6 @@ function App() {
         )}
         <animated.div className="fade-out" style={appProps}>
           <>
-            <Leaflet pins={pins} setPins={setPins} class="leaflet-container" />
-            <CustomToolbar class="toolbar" />
             <Leaflet pins={pins} setPins={setPins} class="leaflet-container" />
             <CustomToolbar class="toolbar" />
             <UsersPins class="pinbar" />

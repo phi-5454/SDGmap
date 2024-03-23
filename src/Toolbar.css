@@ -49,7 +49,7 @@
   align-items: 'center';
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.2s; /* Adjust delay to match toolbar's */
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s; /* Adjust delay to match toolbar's */
 }
 
 .toolbar.expanded .toolbar-icon {
