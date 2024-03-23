@@ -1,4 +1,3 @@
-import { Toolbar } from "@mui/material";
 import "./App.css";
 import Leaflet from "./Leaflet";
 import { useState } from "react";
@@ -11,7 +10,7 @@ function App() {
   return (
     <>
       <Leaflet pins={pins} setPins={setPins} class="leaflet-container" />
-      <CustomToolbar />
+      <CustomToolbar class='toolbar'/>
     </>
   );
 }

@@ -5,14 +5,62 @@
 }
 
 .leaflet-container {
+  position: absolute;
   width: 100vw;
-  height: 90.8vh;
+  height: 100vh;
+  z-index: 0;
 }
 
 .full-height-map {
   height: 100vh;
 }
 
+.toolbar {
+  display: flex;
+
+  
+  top: 90%;
+  left: 0%;
+  
+  padding: 1vw 2vh;
+  height: 10vh;
+  width: 50vw;
+  z-index: 1;
+  border-radius: 2vw;
+
+
+  background-color: darkblue;
+  
+  justify-content: space-between;
+  align-items: center;
+}
+.toolbar.collapsed {
+
+
+  display: flex;
+  position: fixed;
+  
+  top: 90%;
+  left: 0%;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: 7vw;
+  height: 10vh; 
+}
+
+/* Assuming expanded state should show more content or a different layout */
+.toolbar.expanded {
+  /* Adjusted styles for when the toolbar is expanded */
+  width: 50vw; /* Example: reverting to original width */
+  display: flex;
+  position: fixed;
+  
+  top: 90%;
+  left: 0%;
+
+}
 
 
 body {

@@ -1,49 +1,71 @@
-
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import AppBar from '@mui/material/AppBar';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
+function CustomToolbar() {
+    // State to manage the visibility of the toolbar content
+    const [isExpanded, setIsExpanded] = useState(false);
 
-function CustomToolbar(){
+    // Function to toggle the toolbar expansion state
+    const toggleToolbar = () => {
+        setIsExpanded(!isExpanded);
+    };
+
     return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar className="" position="relative">
-      <Toolbar>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mr: 2 }}>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit" 
-          aria-label="menu"
-        >
-          <FontAwesomeIcon icon={fas.faCat} />
-        </IconButton>
-        <Typography variant="caption" sx={{ mt: -0.5 }}>Cat</Typography>
+      <Box sx={{ position: "fixed", width: 500, zIndex: 2 }}>
+        <AppBar position="fixed">
+          <Toolbar class={`toolbar ${isExpanded ? 'expanded' : 'collapsed'}`}>
+            {/* Menu Button always visible */}
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 2 }}>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    onClick={toggleToolbar} // Attach the toggle function to the menu button
+                >
+                    <FontAwesomeIcon icon={fas.faBars} />
+                </IconButton>
+            </Box>
+            
+            {isExpanded && (
+              <>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 2 }}>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="cat"
+                    >
+                        <FontAwesomeIcon icon={fas.faCat} />
+                    </IconButton>
+                    <Typography variant="caption" sx={{ mt: -0.5 }}>Cat</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 2 }}>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="home"
+                    >
+                        <FontAwesomeIcon icon={fas.faHouse} />
+                    </IconButton>
+                    <Typography variant="caption" sx={{ mt: -0.5 }}>Home</Typography>
+                </Box>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    App Name
+                </Typography>
+              </>
+            )}
+          </Toolbar>
+        </AppBar>
       </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mr: 2 }}>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit" 
-          aria-label="menu"
-        >
-          <FontAwesomeIcon icon={fas.faHouse} />
-        </IconButton>
-        <Typography variant="caption" sx={{ mt: -0.5 }}>Home</Typography>
-      </Box>
-      <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-        App Name
-      </Typography>
-      </Toolbar>
-      </AppBar>
-    </Box>)
-
-
+    );
 }
 
-export default CustomToolbar
+export default CustomToolbar;
