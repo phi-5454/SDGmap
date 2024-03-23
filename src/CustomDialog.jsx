@@ -85,7 +85,6 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       <DialogTitle>Add pin</DialogTitle>
 
       {Object.entries(pinLibrary).map((p) => {
-        console.log("AAA", p);
         return (
           <PinMenuItem props={p[1]} key={Math.floor(Math.random() * 100000)} />
         );
