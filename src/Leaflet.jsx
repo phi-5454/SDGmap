@@ -86,7 +86,18 @@ function Leaflet({ pins, setPins }) {
     let category = pin.pinType.category
     let name = pin.pinType.name 
     let comment = pin.comment
-        
+
+    const [comments, setComments] = useState([comment])
+    const [newComment, setNewComment] = useState("")
+
+    const handleNewCommentChange = (e) => setNewComment(e.target.value)
+    const addNewComment = () => {
+      if (newComment.trim()) {
+        setComments([...comments, newComment.trim()])
+        setNewComment("")
+      }
+    }
+
     return (
       <Marker
         key={coordinates[0] + coordinates[1]}
@@ -95,13 +106,27 @@ function Leaflet({ pins, setPins }) {
         riseOnHover
         draggable={false}
       >
-        <Popup>
-          Category: { category } 
+      <Popup>
+        <div>
+          <strong>Category:</strong> {category}
           <br />
-          Description: { name } 
+          <strong>Description:</strong> {name}
           <br />
-          Comment: { comment }
-        </Popup>
+          <strong>Comment:</strong> {comment}
+          <br />
+          <ul>
+            {comments.map((comment, index) => (
+              <li key={index}>{comment}</li>
+            ))}
+          </ul>
+          <textarea
+            value={newComment}
+            onChange={handleNewCommentChange}
+            placeholder="Add a comment"
+          />
+          <button onClick={addNewComment}>Add Comment</button>
+        </div>
+      </Popup>
       </Marker>
     );
   }
