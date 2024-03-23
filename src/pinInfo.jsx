@@ -105,31 +105,31 @@ const pinLibrary = {
 
 const pinsOnMap = [
   {
-    pinType: pinLibrary.Slippery,
+    pinType: "Slippery",
     coordinates: [60.186449, 24.828243],
     timePinned: 0,
     userComments: [{ text: "Slipped here and fell. Watch out.", time: "12-12-2020"}]
   },
   {
-    pinType: pinLibrary.ExposedPower,
+    pinType: "ExposedPower",
     coordinates: [60.185449, 24.827243],
     timePinned: 1,
     userComments: [{ text: "Dangerous-looking power cable. Hope no floods are nearby!", time: "12-12-2012"}]
   },
   {
-    pinType: pinLibrary.StreetFlood,
+    pinType: "StreetFlood",
     coordinates: [60.18303034581267, 24.8241662979126],
     timePinned: 1,
     userComments: [{text: "Couldn't drive through here.", time: "21-12-2023"}]
   },
   {
-    pinType: pinLibrary.StreetFlood,
+    pinType: "StreetFlood",
     coordinates: [60.18569880541803, 24.83596801757813],
     timePinned: 1,
     userComments: [{text: "daffdsds", time: "21-05-2023"}]
   },
   {
-    pinType: pinLibrary.HouseFlood,
+    pinType: "HouseFlood",
     coordinates: [60.190586860862716, 24.831547737121586],
     timePinned: 1,
     userComments: [{ text: "The basement of this house is flooded", time: "23-04-2024"}]   

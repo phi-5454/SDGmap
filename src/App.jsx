@@ -50,8 +50,6 @@ function App() {
     setTimeout(() => {
       
 
-      console.log("Filter: ", filter);
-      console.log("Filtered Pins: ", filteredPins)
     }, 1000);
   }, [filter, pins]);
 
@@ -69,6 +67,7 @@ function App() {
     from: { opacity: 0 },
     delay: 2000,
   });
+
 
   return (
     <>

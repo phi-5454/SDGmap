@@ -30,7 +30,6 @@ const makeIcon = (markup) => {
 function MapEvents({ setPins, pins }) {
   const [open, setOpen] = useState(false);
   const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 });
-
   const pinFormSubmit = async (category, comment, pinIndex) => {
     setOpen(false);
 
@@ -87,9 +86,8 @@ function AddPin({pin, pins, icon}) {
     time: timeVar,
   };
 
-  console.log(pin)
 
-  const [comments, setComments] = useState([...pin.userComments])
+  const [comments, setComments] = useState([...pin.userComments || []])
   const [newComment, setNewComment] = useState([])
 
   const handleNewCommentChange = (e) => setNewComment(e.target.value)
@@ -100,9 +98,9 @@ function AddPin({pin, pins, icon}) {
         time: new Date().toDateString(),
       };
 
-      console.log(pin.userComments.concat(commentObj))
+      console.log(pins)
 
-      pin.userComments = pin.userComments.concat(commentObj)
+      pin.userComments = (pin.userComments || []).concat(commentObj)
       const newPins = pins.map((p) => p.coordinates === coordinates ? pin : p)
 
       await axios.post("https://api.npoint.io/6702b7c729b99c15d863", { pins: newPins })
@@ -150,7 +148,6 @@ function AddPin({pin, pins, icon}) {
 function Leaflet({ pins, setPins }) {
   const position = [60.186449, 24.828243];
 
-
   const bounds = [
     new L.LatLng(60.261997, 24.571249),
     new L.LatLng(60.080936, 25.191078),
@@ -176,6 +173,7 @@ function Leaflet({ pins, setPins }) {
           <AddPin
             key={index}
             pin={pin}
+            pins={pins}
             icon={makeIcon(getPinType(pin.pinType).icon)}
           />
         ))}
