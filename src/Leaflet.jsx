@@ -10,11 +10,9 @@ import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import { LatLng } from "leaflet";
 import { mapTilerApi } from "./constants";
-
+import { Category } from "./pinInfo";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import pinLibrary from "./pinInfo";
 
 const makeIcon = (markup) => {
@@ -32,21 +30,33 @@ const customIcon = L.divIcon({
 });
 
 function MapEvents({ setPins, pins }) {
-  //console.log(pinLibrary);
   const [open, setOpen] = useState(false);
   const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 });
 
-  const pinFormSubmit = (e) => {
+  const pinFormSubmit = (category) => {
     setOpen(false);
-    console.log(currCoords);
-    //console.log(pins);
+    const newPinType = (() => {
+      if (category === Category.Hazard) {
+        return pinLibrary.StreetFlood;
+      } else if (category === Category.Decay) {
+        return pinLibrary.HouseFlood;
+      } else if (category === Category.Decay) {
+        return pinLibrary.Slippery;
+      } else if (category === Category.Suggestion) {
+        return pinLibrary.ExposedPower;
+      } else if (category === Category.Other) {
+        return pinLibrary.ExposedPower;
+      } else {
+        return pinLibrary.StreetFlood;
+      }
+    })();
+
+    console.log(newPinType)
     const pushedPins = pins.concat({
-      pinType: pinLibrary.Slippery,
+      pinType: newPinType,
       coordinates: [currCoords.lat, currCoords.lng],
-      //TODO: Current time
       timePinned: 0,
     });
-    //console.log(pushedPins);
     setPins(pushedPins);
   };
 
@@ -57,7 +67,6 @@ function MapEvents({ setPins, pins }) {
     },
   });
 
-  map.setMaxBounds(map.getBounds());
   return (
     <CustomDialog
       pinFormSubmit={pinFormSubmit}
@@ -72,36 +81,37 @@ function Leaflet({ pins, setPins }) {
   const position = [60.186449, 24.828243];
 
   function addPin(coordinates, icon) {
-    //console.log(coordinates);
     return (
       <Marker
-        key={Math.random(0, 100)}
+        key={coordinates[0] + coordinates[1]}
         icon={icon}
         position={coordinates}
+        riseOnHover
+        draggable={false}
       ></Marker>
     );
   }
 
   const bounds = [
-    new L.LatLng(60.19173, 24.810995),
-    new L.LatLng(60.176836, 24.848636),
+    new L.LatLng(60.261997, 24.571249),
+    new L.LatLng(60.080936, 25.191078),
   ];
 
-  console.log(pins);
   return (
     <>
       <MapContainer
         center={position}
-        maxBounds={bounds}
         zoom={15}
+        maxBounds={bounds}
+        dragging={true}
         class="full-height-map"
       >
         <TileLayer
-          bounds={bounds}
           attribution="Olli Glorioso"
-          maxZoom={20}
-          minZoom={15}
           url={mapTilerApi}
+          maxBounds={bounds}
+          maxZoom={18}
+          minZoom={14}
         />
         {pins.map((pin) => addPin(pin.coordinates, makeIcon(pin.pinType.icon)))}
         <MapEvents setPins={setPins} pins={pins} />
