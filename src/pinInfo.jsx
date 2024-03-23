@@ -17,14 +17,12 @@ export const Category = {
 
 const itemFactory = (faIcon) => {
   return (
-    <div className="icon-container bg-stone-700 w-full rounded-xl drop-shadow">
-      <div className="icon-text text-2xl text-center p-2 flex text-stone-200">
-        <div className="w-full h-full my-auto">
-          <FontAwesomeIcon
-            className="mx-auto my-auto content-center"
-            icon={faIcon}
-          />
-        </div>
+    <div className="icon-container bg-stone-700 w-full rounded-xl drop-shadow flex justify-center items-center ">
+      <div className="icon-text text-2xl text-center p-1 text-stone-200">
+        <FontAwesomeIcon
+          className="mx-auto my-auto content-center"
+          icon={faIcon}
+        />
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const PinMenuItem = ({ pinType }) => {
   console.log(pinType);
   return (
-    <div className="flex m-1 p-2 border-stone-700 border-2 rounded-lg border-3">
+    <div className="flex p-2 border-stone-700 border-2 rounded-lg ">
       {pinType.icon}
       <div className="p-2 text-l inline-block w-full text-center align-middle">
         {pinType.name}
