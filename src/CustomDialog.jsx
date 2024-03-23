@@ -85,20 +85,20 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
     >
       <DialogTitle>Add pin</DialogTitle>
 
-      {Object.entries(pinLibrary).map((p) => {
-        return (
-          <PinMenuItem
-            pinType={p[1]}
-            key={Math.floor(Math.random() * 100000)}
-          />
-        );
-      })}
       <DialogContent>
         <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
           Latitude: {currCoords.lat.toFixed(2)}
         </Typography> 
         <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>*/}
+        {Object.entries(pinLibrary).map((p) => {
+          return (
+            <PinMenuItem
+              pinType={p[1]}
+              key={Math.floor(Math.random() * 100000)}
+            />
+          );
+        })}
         <FormControl>
           <InputLabel htmlFor="my-input">Description</InputLabel>
           <Input id="my-input" aria-describedby="my-helper-text" />
