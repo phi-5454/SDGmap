@@ -1,19 +1,18 @@
-import * as React from 'react';
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import { Typography } from '@mui/material';
+import * as React from "react";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import { Typography } from "@mui/material";
 
 const options = [
-  'Show some love to MUI',
-  'Hide sensitive notification content',
-  'Hide all notification content',
+  "Show some love to MUI",
+  "Hide sensitive notification content",
+  "Hide all notification content",
 ];
 
-export default function SimpleListMenu( { pinLibrary }) {
-  
+export default function SimpleListMenu({ pinLibrary }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const open = Boolean(anchorEl);
@@ -21,10 +20,7 @@ export default function SimpleListMenu( { pinLibrary }) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuItemClick = (
-    event,
-    index
-  ) => {
+  const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setAnchorEl(null);
   };
@@ -33,25 +29,24 @@ export default function SimpleListMenu( { pinLibrary }) {
     setAnchorEl(null);
   };
 
-
   return (
     <div>
       <List
         component="nav"
         aria-label="Device settings"
-        sx={{ bgcolor: 'background.paper' }}
+        sx={{ bgcolor: "background.paper" }}
       >
         <ListItemButton
           id="lock-button"
           aria-haspopup="listbox"
           aria-controls="lock-menu"
           aria-label="when device is locked"
-          aria-expanded={open ? 'true' : undefined}
+          aria-expanded={open ? "true" : undefined}
           onClick={handleClickListItem}
         >
           <ListItemText
             primary={"Select alert type"}
-            primaryTypographyProps={{ fontSize: "25px"}}
+            primaryTypographyProps={{ fontSize: "25px" }}
             style={{ textAlign: "center" }}
           />
         </ListItemButton>
@@ -62,8 +57,8 @@ export default function SimpleListMenu( { pinLibrary }) {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'lock-button',
-          role: 'listbox',
+          "aria-labelledby": "lock-button",
+          role: "listbox",
         }}
       >
         {Object.entries(pinLibrary).map((option, index) => (
@@ -71,7 +66,7 @@ export default function SimpleListMenu( { pinLibrary }) {
             key={option[1].name}
             selected={index === selectedIndex}
             onClick={(event) => handleMenuItemClick(event, index)}
-            style={{ width: "200px"}}
+            style={{ width: "200px" }}
           >
             <div className="flex rounded-s">
               {option[1].icon}
@@ -85,3 +80,4 @@ export default function SimpleListMenu( { pinLibrary }) {
     </div>
   );
 }
+
