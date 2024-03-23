@@ -10,17 +10,27 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 function CustomToolbar({ onChange }) {
   // State to manage the visibility of the toolbar content
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isFiltered, setIsFiltered] = useState(false);
-
+  const [isFilteredHouseFlood, setIsFilteredHouseFlood] = useState(false);
+  const [isFilteredStreetFlood, setIsFilteredStreetFlood] = useState(false);
 
   // Function to toggle the toolbar expansion state
   const toggleToolbar = () => {
     setIsExpanded(!isExpanded);
   };
 
-  const toggleFilter = () => {
-   setIsFiltered(!isFiltered);
+  const toggleFilterHouseFlood = () => {
+   setIsFilteredHouseFlood(!isFilteredHouseFlood);
   }
+
+  const toggleFilterStreetFlood = () => {
+    setIsFilteredStreetFlood(!isFilteredStreetFlood);
+  }
+
+  const forceAllFiltersOff = () => {
+    setIsFilteredHouseFlood(false);
+    setIsFilteredStreetFlood(false);
+  }
+
 
   return (
     <Box sx={{ position: "fixed", width: 500, zIndex: 2 }}>
@@ -42,7 +52,7 @@ function CustomToolbar({ onChange }) {
               aria-label="menu"
               onClick={toggleToolbar} // Attach the toggle function to the menu button
             >
-              <FontAwesomeIcon icon={fas.faBars} />
+              <FontAwesomeIcon icon={fas.faFilter} />
             </IconButton>
           </Box>
 
@@ -56,17 +66,17 @@ function CustomToolbar({ onChange }) {
                   color="inherit"
                   aria-label="cat"
                   onClick={() => {
-                    if (isFiltered) {
-                      setIsFiltered(false);
+                    if (isFilteredHouseFlood) {
                       onChange("")
                     }
                     else {
-                      setIsFiltered(true);
                       onChange("HouseFlood");
                     }
+                    forceAllFiltersOff();
+                    toggleFilterHouseFlood();
                   }}
                 >
-                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faHouseFloodWater} color={`${isFiltered ? "black" : "white"}`} />
+                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faHouseFloodWater} color={`${isFilteredHouseFlood ? "black" : "white"}`} />
                 </IconButton>
               </Box>
               <Box>
@@ -76,8 +86,18 @@ function CustomToolbar({ onChange }) {
                   edge="start"
                   color="inherit"
                   aria-label="home"
+                  onClick={() => {
+                    if (isFilteredStreetFlood) {
+                      onChange("")
+                    }
+                    else {
+                      onChange("StreetFlood");
+                    }
+                    forceAllFiltersOff();
+                    toggleFilterStreetFlood();
+                  }}
                 >
-                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faHouse} />
+                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faWater} color={`${isFilteredStreetFlood ? "black" : "white"}`} />
                 </IconButton>
               </Box>
               
