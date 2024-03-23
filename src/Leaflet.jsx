@@ -13,7 +13,7 @@ function Leaflet({ pins, setPins }) {
 
     return (
         <>
-            <MapContainer center={position} zoom={20} style={{ height: "90vh" }}>
+            <MapContainer center={position} zoom={20} class="full-height-map">
                 <TileLayer
                 attribution='Olli Glorioso'
                 url="https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=o28q90KHszO8WjJEWBy1"
