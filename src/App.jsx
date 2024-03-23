@@ -1,21 +1,20 @@
+import { Toolbar } from "@mui/material";
 import "./App.css";
 import Leaflet from "./Leaflet";
 import { useState } from "react";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
+import CustomToolbar from "./ToolBar"
 
 function App() {
   const [pins, setPins] = useState([
     {
-      coordinates: [60.1699, 24.9384],
+      coordinates: [60.186449, 24.828243],
     },
   ]);
 
   return (
     <>
-      <Leaflet pins={pins} setPins={setPins} />
-      <FontAwesomeIcon icon={fas.faHouse} />
+      <Leaflet pins={pins} setPins={setPins} class="leaflet-container" />
+      <CustomToolbar />
     </>
   );
 }
