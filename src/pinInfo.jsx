@@ -15,58 +15,44 @@ export const Category = {
   Other: "Other",
 };
 
+const itemFactory = (faIcon) => {
+  return (
+    <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
+      <div className="icon-text text-2xl text-center p-1  text-stone-200">
+        <FontAwesomeIcon icon={faIcon} />
+      </div>
+    </div>
+  );
+};
+
 const pinLibrary = {
   StreetFlood: {
     key: 0,
     category: Category.Damage,
     name: "Flooded street",
     lifetime: -1,
-    icon: (
-      <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
-        <div className="icon-text text-2xl  p-1  text-stone-200">
-          <FontAwesomeIcon icon={fas.faWater} />
-        </div>
-      </div>
-    ),
+    icon: itemFactory(fas.faWater),
   },
   HouseFlood: {
     key: 0,
     category: Category.Damage,
     name: "Flooded house",
     lifetime: -1,
-    icon: (
-      <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
-        <div className="icon-text text-2xl  p-1  text-stone-200">
-          <FontAwesomeIcon icon={fas.faHouseFloodWater} />
-        </div>
-      </div>
-    ),
+    icon: itemFactory(fas.faHouseFloodWater),
   },
   Slippery: {
     key: 1,
     category: Category.Hazard,
     name: "Slippery street",
     lifetime: -1,
-    icon: (
-      <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
-        <div className="icon-text text-2xl  p-1  text-stone-200">
-          <FontAwesomeIcon icon={fas.faBoltLightning} />
-        </div>
-      </div>
-    ),
+    icon: itemFactory(fas.faBoltLightning),
   },
   ExposedPower: {
     key: 2,
     category: Category.Hazard,
     name: "Exposed powerline",
     lifetime: -1,
-    icon: (
-      <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
-        <div className="icon-text text-2xl  p-1 text-stone-200">
-          <FontAwesomeIcon icon={fas.faPersonFalling} />
-        </div>
-      </div>
-    ),
+    icon: itemFactory(fas.faPersonFalling),
   },
 };
 

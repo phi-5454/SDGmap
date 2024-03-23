@@ -13,18 +13,18 @@ import {
 import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { Category } from "./pinInfo";
-import pinLibrary from "./pinInfo";
+import pinLibrary, { Category } from "./pinInfo";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const PinMenuItem = (pinType) => {
-  return <div className="flex">{pinType.icon}</div>;
+  console.log(pinType);
+  return <div>{pinType.props.icon}</div>;
 };
 
-function BasicMenu({ category }) {
+function BasicMenu({ category, setCategory }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -45,7 +45,7 @@ function BasicMenu({ category }) {
         onClick={handleClick}
       >
         <Typography variant="subtitle1">
-          {(!category || false) ? "Category" : category}
+          {!category || false ? "Category" : category}
         </Typography>
       </Button>
       <Menu
@@ -75,8 +75,8 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       onClose={() => setOpen(false)}
       TransitionComponent={Transition}
     >
-      <PinMenuItem props={pinLibrary.Slippery} />
       <DialogTitle>Add pin</DialogTitle>
+      <PinMenuItem props={pinLibrary.Slippery} />
       <DialogContent>
         <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
@@ -84,12 +84,11 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
         </Typography> 
         <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>*/}
         <FormControl>
-            
-            <InputLabel htmlFor="my-input">Description</InputLabel>
-            <Input id="my-input" aria-describedby="my-helper-text" />
-            <FormHelperText id="my-helper-text">
+          <InputLabel htmlFor="my-input">Description</InputLabel>
+          <Input id="my-input" aria-describedby="my-helper-text" />
+          <FormHelperText id="my-helper-text">
             Describe the situation.
-            </FormHelperText>
+          </FormHelperText>
           <Button onClick={() => pinFormSubmit(category)}>Add</Button>
         </FormControl>
       </DialogContent>
