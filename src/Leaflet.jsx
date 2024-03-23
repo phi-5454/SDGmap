@@ -10,7 +10,7 @@ import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import { LatLng } from "leaflet";
-import { mapTilerApi } from "./constants";
+import { getPinType, mapTilerApi } from "./constants";
 import { Category } from "./pinInfo";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -52,9 +52,8 @@ function MapEvents({ setPins, pins }) {
       }
     })();
 
-    console.log(newPinType)
     const pushedPins = pins.concat({
-      pinType: newPinType,
+      pinType: "HouseFlood",
       coordinates: [currCoords.lat, currCoords.lng],
       timePinned: 0,
     });
@@ -153,11 +152,12 @@ function Leaflet({ pins, setPins }) {
           maxZoom={18}
           minZoom={14}
         />
-        {pins.map((pin) => addPin(pin, makeIcon(pin.pinType.icon)))}
+        {pins.map((pin) => addPin(pin, makeIcon(getPinType(pin.pinType).icon)))}
         <MapEvents setPins={setPins} pins={pins} />
       </MapContainer>
     </>
   );
 }
+
 
 export default Leaflet;
