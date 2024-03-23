@@ -17,10 +17,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import pinLibrary from "./pinInfo";
 
+const makeIcon = (markup) => {
+  return L.divIcon({
+    className: "custom-icon",
+    html: renderToStaticMarkup(markup),
+    iconSize: [50, 50], // Adjust the icon size as needed
+  });
+};
+
 const customIcon = L.divIcon({
   className: "custom-icon",
   html: renderToStaticMarkup(pinLibrary.Slippery.icon),
-  iconSize: [30, 30], // Adjust the icon size as needed
+  iconSize: [50, 50], // Adjust the icon size as needed
 });
 
 function MapEvents({ setPins, pins }) {
@@ -33,7 +41,10 @@ function MapEvents({ setPins, pins }) {
     console.log(currCoords);
     //console.log(pins);
     const pushedPins = pins.concat({
+      pinType: pinLibrary.Slippery,
       coordinates: [currCoords.lat, currCoords.lng],
+      //TODO: Current time
+      timePinned: 0,
     });
     //console.log(pushedPins);
     setPins(pushedPins);
@@ -76,6 +87,7 @@ function Leaflet({ pins, setPins }) {
     new L.LatLng(60.176836, 24.848636),
   ];
 
+  console.log(pins);
   return (
     <>
       <MapContainer
@@ -91,7 +103,7 @@ function Leaflet({ pins, setPins }) {
           minZoom={15}
           url={mapTilerApi}
         />
-        {pins.map((pin) => addPin(pin.coordinates, customIcon))}
+        {pins.map((pin) => addPin(pin.coordinates, makeIcon(pin.pinType.icon)))}
         <MapEvents setPins={setPins} pins={pins} />
       </MapContainer>
     </>
