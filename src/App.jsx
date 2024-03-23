@@ -6,8 +6,7 @@ function App() {
 
   const [pins, setPins] = useState([
     {
-      lat: 60.1699,
-      lng: 24.9384
+      coordinates: [60.1699, 24.9384],
     }
   ])
 

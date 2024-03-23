@@ -18,7 +18,7 @@ function Leaflet({ pins, setPins }) {
                 attribution='Olli Glorioso'
                 url="https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=o28q90KHszO8WjJEWBy1"
                 />
-                {pins.map((pin) => addPin(pin))}
+                {pins.map((pin) => addPin(pin.coordinates))}
             </MapContainer>
         </>
     )
