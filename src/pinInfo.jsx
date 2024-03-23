@@ -1,11 +1,6 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import { renderToStaticMarkup } from "react-dom/server";
-import L from "leaflet";
 
 export const Category = {
   Hazard: "Hazard",
