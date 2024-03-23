@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
 
-function Leaflet() {
+function Leaflet({ pins, setPins }) {
     const position = [60.1699, 24.9384]
 
     function addPin(coordinates) {
@@ -18,6 +18,7 @@ function Leaflet() {
                 attribution='Olli Glorioso'
                 url="https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=o28q90KHszO8WjJEWBy1"
                 />
+                {pins.map((pin) => addPin(pin))}
             </MapContainer>
         </>
     )
