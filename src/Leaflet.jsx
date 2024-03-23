@@ -10,7 +10,7 @@ import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import { LatLng } from "leaflet";
-import { getPinType, mapTilerApi } from "./constants";
+import { getPinType, alertMessages, mapTilerApi } from "./constants";
 import { Category } from "./pinInfo";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -36,30 +36,19 @@ function MapEvents({ setPins, pins }) {
   const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 });
 
   const pinFormSubmit = async (category) => {
-    setOpen(false);
-    const newPinType = (() => {
-      if (category === Category.Hazard) {
-        return pinLibrary.StreetFlood;
-      } else if (category === Category.Decay) {
-        return pinLibrary.HouseFlood;
-      } else if (category === Category.Decay) {
-        return pinLibrary.Slippery;
-      } else if (category === Category.Suggestion) {
-        return pinLibrary.ExposedPower;
-      } else if (category === Category.Other) {
-        return pinLibrary.ExposedPower;
-      } else {
-        return pinLibrary.StreetFlood;
-      }
-    })();
+    setOpen(false)
 
+
+    const pinTypes = Object.keys(pinLibrary);
+    const randomPinType = pinTypes[Math.floor(Math.random() * pinTypes.length)];
     const pushedPins = pins.concat({
-      pinType: "HouseFlood",
+      pinType: randomPinType,
       coordinates: [currCoords.lat, currCoords.lng],
       timePinned: 0,
+      comment: alertMessages[Math.floor(Math.random() * alertMessages.length)]
     });
 
-    await axios.post("https://api.npoint.io/6702b7c729b99c15d863", {pins: pushedPins })
+    await axios.post("https://api.npoint.io/6702b7c729b99c15d863", { pins: pushedPins })
     setPins(pushedPins);
   };
 
