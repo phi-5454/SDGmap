@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowIcon(false); 
-    }, 3000); 
+    }, 2000); 
 
     return () => clearTimeout(timer);
   }, []);
@@ -36,7 +36,7 @@ function App() {
   const appProps = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
-    delay: 3000,
+    delay: 2000,
   });
 
   return (
