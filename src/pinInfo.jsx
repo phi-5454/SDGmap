@@ -30,11 +30,25 @@ const itemFactory = (faIcon) => {
 
 const pinLibrary = {
   StreetFlood: {
-    key: 0,
+    key: -1,
     category: Category.Damage,
     name: "Flooded street",
     lifetime: -1,
     icon: itemFactory(fas.faWater),
+  },
+  ExposedSewage: {
+    key: 0,
+    category: Category.Damage,
+    name: "Exposed sewage",
+    lifetime: -1,
+    icon: itemFactory(fas.faDisease),
+  },
+  CollapsedBuilding: {
+    key: 0,
+    category: Category.Damage,
+    name: "Collapsed building",
+    lifetime: -1,
+    icon: itemFactory(fas.faBurst),
   },
   HouseFlood: {
     key: 1,
@@ -56,6 +70,41 @@ const pinLibrary = {
     name: "Exposed powerline",
     lifetime: -1,
     icon: itemFactory(fas.faBoltLightning),
+  },
+  Pothole: {
+    key: 4,
+    category: Category.Decay,
+    name: "Pothole",
+    lifetime: -1,
+    icon: itemFactory(fas.faHeartCrack),
+  },
+  WildAnimal: {
+    key: 5,
+    category: Category.Hazard,
+    name: "Wild animal",
+    lifetime: -1,
+    icon: itemFactory(fas.faHippo),
+  },
+  DelerictBuilding: {
+    key: 6,
+    category: Category.Decay,
+    name: "Delerict building",
+    lifetime: -1,
+    icon: itemFactory(fas.faHouseCrack),
+  },
+  CarAccident: {
+    key: 7,
+    category: Category.Decay,
+    name: "Car accident",
+    lifetime: -1,
+    icon: itemFactory(fas.faCarBurst),
+  },
+  RoadBarrier: {
+    key: 7,
+    category: Category.Hazard,
+    name: "Road barrier",
+    lifetime: -1,
+    icon: itemFactory(fas.faRoadBarrier),
   },
 };
 
@@ -83,6 +132,12 @@ const pinsOnMap = [
     coordinates: [60.18569880541803, 24.83596801757813],
     timePinned: 1,
     comment: "",
+  },
+  {
+    pinType: "HouseFlood",
+    coordinates: [60.190586860862716, 24.831547737121586],
+    timePinned: 1,
+    comment: "The basement of this house is flooded",
   },
   {
     pinType: "HouseFlood",

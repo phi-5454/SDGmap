@@ -38,6 +38,8 @@ function BasicMenu({ category, setCategory }) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (category) => {
+    debugger;
+    console.log(category);
     setCategory(category);
     setAnchorEl(null);
   };
@@ -77,7 +79,9 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
   return (
     <Dialog
       open={open}
-      onClose={() => setOpen(false)}
+      onClose={() => {
+        setOpen(false);
+      }}
       TransitionComponent={Transition}
     >
       <DialogTitle>Add pin</DialogTitle>
