@@ -52,6 +52,7 @@
   transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s; /* Adjust delay to match toolbar's */
 }
 
+
 .toolbar.expanded .toolbar-icon {
   opacity: 1;
   visibility: visible;

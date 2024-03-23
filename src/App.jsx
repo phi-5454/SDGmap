@@ -16,7 +16,20 @@ import axios from "axios";
 function App() {
 
   const [pins, setPins] = useState([]);
+  const [filteredPins, setFilteredPins] = useState([]);
+  const [filter, setFilter] = useState("");
   const [showIcon, setShowIcon] = useState(true); 
+
+  const handleFilter = (toolbarData) => {
+    
+    console.log("ToolbarData: ", toolbarData)
+    
+    setFilter(toolbarData);
+   
+    setTimeout(() => {
+      console.log("Filter: ", filter)
+    }, 1000);
+  }
 
   useEffect(() => {
     axios.get("https://api.npoint.io/6702b7c729b99c15d863").then(
@@ -28,6 +41,17 @@ function App() {
     }
   )}, []);
   
+  useEffect(() => {
+    const filteredPins = pins.filter(pin => pin.pinType.includes(filter));
+    setFilteredPins(filteredPins);
+
+    // Log the current filter for debugging
+    setTimeout(() => {
+      console.log("Filter: ", filter);
+      console.log("Filtered Pins: ", filteredPins)
+    }, 1000);
+  }, [filter, pins]);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -54,8 +78,8 @@ function App() {
         )}
         <animated.div className="fade-out" style={appProps}>
           <>
-            <Leaflet pins={pins} setPins={setPins} class="leaflet-container" />
-            <CustomToolbar class='toolbar'/>
+            <Leaflet pins={filteredPins} setPins={setPins} class="leaflet-container" />
+            <CustomToolbar class='toolbar' onChange={handleFilter}/>
             <UsersPins class='pinbar'/>
           </>
         </animated.div>
