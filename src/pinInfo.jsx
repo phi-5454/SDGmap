@@ -17,8 +17,8 @@ export const Category = {
 
 const itemFactory = (faIcon) => {
   return (
-    <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
-      <div className="icon-text text-2xl text-center p-1  text-stone-200">
+    <div className="icon-container bg-stone-700 w-full rounded-xl drop-shadow">
+      <div className="icon-text text-2xl text-center p-2  text-stone-200">
         <FontAwesomeIcon icon={faIcon} />
       </div>
     </div>
