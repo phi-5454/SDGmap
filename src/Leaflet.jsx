@@ -71,7 +71,7 @@ function MapEvents({ setPins, pins }) {
 }
 
 
-function AddPin({pin, icon}) {
+function AddPin({pin, pins, icon}) {
 
   let coordinates = pin.coordinates
   let category = getPinType(pin.pinType).category
@@ -92,17 +92,26 @@ function AddPin({pin, icon}) {
     time: timeVar
   }
 
-  const [comments, setComments] = useState([commentObj])
+  console.log(pin)
+
+  const [comments, setComments] = useState([...pin.userComments])
   const [newComment, setNewComment] = useState([])
 
   const handleNewCommentChange = (e) => setNewComment(e.target.value)
-  const addNewComment = () => {
+  const addNewComment = async () => {
     if (newComment.trim()) {
       
       const commentObj = {
         text: newComment.trim(),
         time: new Date().toDateString(),
       }
+
+      console.log(pin.userComments.concat(commentObj))
+
+      pin.userComments = pin.userComments.concat(commentObj)
+      const newPins = pins.map((p) => p.coordinates === coordinates ? pin : p)
+
+      await axios.post("https://api.npoint.io/6702b7c729b99c15d863", { pins: newPins })
 
       setComments([...comments, commentObj])
       setNewComment("")
@@ -166,7 +175,7 @@ function Leaflet({ pins, setPins }) {
           minZoom={14}
         />
         {pins.map((pin, index) =>
-          <AddPin key={index} pin={pin} icon={makeIcon(getPinType(pin.pinType).icon)} />
+          <AddPin key={index} pins={pins} pin={pin} icon={makeIcon(getPinType(pin.pinType).icon)} />
           )}
         <MapEvents setPins={setPins} pins={pins} />
       </MapContainer>
