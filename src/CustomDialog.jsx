@@ -30,7 +30,8 @@ function BasicMenu({ category }) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (category) => {
+    setCategory(category);
     setAnchorEl(null);
   };
 
@@ -57,7 +58,7 @@ function BasicMenu({ category }) {
         }}
       >
         {Object.keys(Category).map((category) => (
-          <MenuItem key={category} onClick={handleClose}>
+          <MenuItem key={category} onClick={() => handleClose(category)}>
             {category.toString()}
           </MenuItem>
         ))}
@@ -76,7 +77,7 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
     >
       <DialogTitle>Add pin</DialogTitle>
       <DialogContent>
-        <BasicMenu category={category} />
+        <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
           Latitude: {currCoords.lat.toFixed(2)}
   </Typography> */}
