@@ -3,6 +3,7 @@ import {
   TileLayer,
   Marker,
   useMap,
+  Popup,
   useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -82,15 +83,29 @@ function MapEvents({ setPins, pins }) {
 function Leaflet({ pins, setPins }) {
   const position = [60.186449, 24.828243];
 
-  function addPin(coordinates, icon) {
+  function addPin(pin, icon) {
+
+    let coordinates = pin.coordinates
+    let category = pin.pinType.category
+    let name = pin.pinType.name 
+    let comment = pin.comment
+        
     return (
       <Marker
-        key={Math.random(0, 100)}
+        key={Math.random(0, 100)}coordinates
         icon={icon}
         position={coordinates}
         riseOnHover
         draggable={false}
-      ></Marker>
+      >
+        <Popup>
+          Category: { category } 
+          <br />
+          Description: { name } 
+          <br />
+          Comment: { comment }
+        </Popup>
+      </Marker>
     );
   }
 
@@ -115,7 +130,7 @@ function Leaflet({ pins, setPins }) {
           maxZoom={18}
           minZoom={14}
         />
-        {pins.map((pin) => addPin(pin.coordinates, makeIcon(pin.pinType.icon)))}
+        {pins.map((pin) => addPin(pin, makeIcon(pin.pinType.icon)))}
         <MapEvents setPins={setPins} pins={pins} />
       </MapContainer>
     </>
