@@ -39,8 +39,6 @@ function BasicMenu({ category, setCategory }) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (category) => {
-    console.log(category);
-    setCategory(category);
     setAnchorEl(null);
   };
 
@@ -80,7 +78,6 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
   const [category, setCategory] = React.useState(null);
   const [textValue, setTextValue] = React.useState("");
 
-  console.log(textValue)
   return (
     <Dialog
       open={open}
