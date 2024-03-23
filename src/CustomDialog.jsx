@@ -45,7 +45,7 @@ function BasicMenu({ category }) {
         onClick={handleClick}
       >
         <Typography variant="subtitle1">
-          {category == null ? "Category" : category}
+          {(!category || false) ? "Category" : category}
         </Typography>
       </Button>
       <Menu
@@ -81,15 +81,16 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
         <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
           Latitude: {currCoords.lat.toFixed(2)}
-  </Typography> */}
-        <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>
+        </Typography> 
+        <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>*/}
         <FormControl>
-          <InputLabel htmlFor="my-input">Description</InputLabel>
-          <Input id="my-input" aria-describedby="my-helper-text" />
-          <FormHelperText id="my-helper-text">
-            We'll never share your email.
-          </FormHelperText>
-          <Button onClick={() => pinFormSubmit()}>Add</Button>
+            
+            <InputLabel htmlFor="my-input">Description</InputLabel>
+            <Input id="my-input" aria-describedby="my-helper-text" />
+            <FormHelperText id="my-helper-text">
+            Describe the situation.
+            </FormHelperText>
+          <Button onClick={() => pinFormSubmit(category)}>Add</Button>
         </FormControl>
       </DialogContent>
     </Dialog>

@@ -10,11 +10,9 @@ import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import { LatLng } from "leaflet";
 import { mapTilerApi } from "./constants";
-
+import { Category } from "./pinInfo";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import pinLibrary from "./pinInfo";
 
 const customIcon = L.divIcon({
@@ -32,17 +30,31 @@ const makeIcon = (markup) => {
 };
 
 function MapEvents({ setPins, pins }) {
-  //console.log(pinLibrary);
   const [open, setOpen] = useState(false);
   const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 });
 
-  const pinFormSubmit = (e) => {
+  const pinFormSubmit = (category) => {
     setOpen(false);
-    console.log(currCoords);
+    const newPinType = (() => {
+      if (category === Category.Hazard) {
+        return pinLibrary.StreetFlood;
+      } else if (category === Category.Decay) {
+        return pinLibrary.HouseFlood;
+      } else if (category === Category.Decay) {
+        return pinLibrary.Slippery;
+      } else if (category === Category.Suggestion) {
+        return pinLibrary.ExposedPower;
+      } else if (category === Category.Other) {
+        return pinLibrary.ExposedPower;
+      } else {
+        return pinLibrary.StreetFlood;
+      }
+    })();
+
+    console.log(newPinType)
     const pushedPins = pins.concat({
-      pinType: pinLibrary.Slippery,
+      pinType: newPinType,
       coordinates: [currCoords.lat, currCoords.lng],
-      //TODO: Current time
       timePinned: 0,
     });
     setPins(pushedPins);
