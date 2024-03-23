@@ -20,7 +20,7 @@ function App() {
 
   return (
     <>
-      <Leaflet pins={pins} setPins={setPins} />
+      <Leaflet pins={pins} setPins={setPins} class="leaflet-container" />
      
       <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
