@@ -45,12 +45,13 @@ function Leaflet({ pins, setPins }) {
 
     return (
         <>
-            <MapContainer center={position} maxBounds={bounds} zoom={20} class="full-height-map">
+            <MapContainer center={position} maxBounds={bounds} zoom={15} class="full-height-map">
                 <TileLayer
-                bounds={bounds}
-                attribution='Olli Glorioso'
-                
-                url={mapTilerApi}
+                    bounds={bounds}
+                    attribution='Olli Glorioso'
+                    maxZoom={20}
+                    minZoom={15}
+                    url={mapTilerApi}
                 />
                 {pins.map((pin) => addPin(pin.coordinates))}
                 <MapEvents />
