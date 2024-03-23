@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 function App() {
   const [pins, setPins] = useState([
     {
-      coordinates: [60.1699, 24.9384],
+      coordinates: [60.186449, 24.828243],
     },
   ]);
 
