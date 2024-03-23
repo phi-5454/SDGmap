@@ -21,7 +21,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const PinMenuItem = (pinType) => {
   console.log(pinType);
-  return <div>{pinType.props.icon}</div>;
+  return (
+    <div className="flex m-1 p-2 border-stone-700 border-2 rounded-s border-3">
+      {pinType.props.icon}
+      <div className="p-2 text-l inline-block w-full text-center align-middle">
+        {pinType.props.name}
+      </div>
+    </div>
+  );
 };
 
 function BasicMenu({ category, setCategory }) {
