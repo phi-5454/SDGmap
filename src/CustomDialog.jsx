@@ -84,7 +84,7 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
             <FormHelperText id="my-helper-text">
             Describe the situation.
             </FormHelperText>
-          <Button onClick={() => pinFormSubmit()}>Add</Button>
+          <Button onClick={() => pinFormSubmit(category)}>Add</Button>
         </FormControl>
         
       </DialogContent>
