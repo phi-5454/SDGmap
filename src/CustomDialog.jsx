@@ -116,7 +116,10 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
             Describe the situation.
           </FormHelperText>
           <Button
-            onClick={() => pinFormSubmit(category, textValue, pinTypeIndex)}
+            onClick={() => {
+              pinFormSubmit(category, textValue, pinTypeIndex);
+              setTextValue("");
+            }}
           >
             Add
           </Button>
