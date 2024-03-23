@@ -74,8 +74,13 @@ function BasicMenu({ category, setCategory }) {
   );
 }
 
+
+
 function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
   const [category, setCategory] = React.useState(null);
+  const [textValue, setTextValue] = React.useState("");
+
+  console.log(textValue)
   return (
     <Dialog
       open={open}
@@ -96,11 +101,11 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
         <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>*/}
         <FormControl>
           <InputLabel htmlFor="my-input">Description</InputLabel>
-          <Input id="my-input" aria-describedby="my-helper-text" />
+          <Input id="my-input" aria-describedby="my-helper-text" value={textValue} onChange={e => setTextValue(e.target.value)}/>
           <FormHelperText id="my-helper-text">
             Describe the situation.
           </FormHelperText>
-          <Button onClick={() => pinFormSubmit(category)}>Add</Button>
+          <Button onClick={() => pinFormSubmit(category, textValue)}>Add</Button>
         </FormControl>
       </DialogContent>
     </Dialog>

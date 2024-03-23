@@ -35,7 +35,7 @@ function MapEvents({ setPins, pins }) {
   const [open, setOpen] = useState(false);
   const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 });
 
-  const pinFormSubmit = async (category) => {
+  const pinFormSubmit = async (category, comment) => {
     setOpen(false)
 
 
@@ -45,7 +45,7 @@ function MapEvents({ setPins, pins }) {
       pinType: randomPinType,
       coordinates: [currCoords.lat, currCoords.lng],
       timePinned: 0,
-      comment: alertMessages[Math.floor(Math.random() * alertMessages.length)]
+      comment
     });
 
     await axios.post("https://api.npoint.io/6702b7c729b99c15d863", { pins: pushedPins })
