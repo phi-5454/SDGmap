@@ -19,9 +19,9 @@ function CustomToolbar() {
     return (
       <Box sx={{ position: "fixed", width: 500, zIndex: 2 }}>
         <AppBar position="fixed">
-          <Toolbar class={`toolbar ${isExpanded ? 'expanded' : 'collapsed'}`}>
+          <Toolbar className={`toolbar ${isExpanded ? 'expanded' : 'collapsed'}`}>
             {/* Menu Button always visible */}
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 2 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 1 }}>
                 <IconButton
                     size="large"
                     edge="start"
@@ -35,8 +35,9 @@ function CustomToolbar() {
             
             {isExpanded && (
               <>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 2 }}>
+                <Box>
                     <IconButton
+                        className="toolbar-icon"
                         size="large"
                         edge="start"
                         color="inherit"
@@ -44,10 +45,10 @@ function CustomToolbar() {
                     >
                         <FontAwesomeIcon icon={fas.faCat} />
                     </IconButton>
-                    <Typography variant="caption" sx={{ mt: -0.5 }}>Cat</Typography>
                 </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 2 }}>
+                <Box>
                     <IconButton
+                        className="toolbar-icon"
                         size="large"
                         edge="start"
                         color="inherit"
@@ -55,9 +56,8 @@ function CustomToolbar() {
                     >
                         <FontAwesomeIcon icon={fas.faHouse} />
                     </IconButton>
-                    <Typography variant="caption" sx={{ mt: -0.5 }}>Home</Typography>
                 </Box>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                <Typography className='toolbar-icon' variant="h6" component="div">
                     App Name
                 </Typography>
               </>

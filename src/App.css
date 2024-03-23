@@ -48,6 +48,7 @@
 
   width: 7vw;
   height: 10vh; 
+  transition: width 0.2s linear;
 }
 
 /* Assuming expanded state should show more content or a different layout */
@@ -59,7 +60,23 @@
   
   top: 90%;
   left: 0%;
+  transition: width 0.2s linear;
+}
 
+/* Base state of the icons - hidden */
+.toolbar-icon {
+  display: 'flex';
+  flex-direction: 'column';
+  align-items: 'center';
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.2s; /* Adjust delay to match toolbar's */
+}
+
+.toolbar.expanded .toolbar-icon {
+  opacity: 1;
+  visibility: visible;
+  
 }
 
 
