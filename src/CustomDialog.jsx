@@ -14,18 +14,18 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import pinLibrary, { Category } from "./pinInfo";
+import { getPinType } from "./constants";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const PinMenuItem = (pinType) => {
-  console.log(pinType);
   return (
     <div className="flex m-1 p-2 border-stone-700 border-2 rounded-s border-3">
-      {pinType.props.icon}
+      {getPinType(pinType).icon}
       <div className="p-2 text-l inline-block w-full text-center align-middle">
-        {pinType.props.name}
+        {getPinType(pinType).name}
       </div>
     </div>
   );
