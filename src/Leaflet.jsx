@@ -18,11 +18,6 @@ import pinLibrary from "./pinInfo";
 import axios from "axios";
 import { comment } from "postcss";
 
-const customIcon = L.divIcon({
-  className: "custom-icon",
-  html: renderToStaticMarkup(pinLibrary.Slippery.icon),
-  iconSize: [50, 50], // Adjust the icon size as needed
-});
 
 const makeIcon = (markup) => {
   return L.divIcon({
