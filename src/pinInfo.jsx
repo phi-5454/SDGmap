@@ -5,7 +5,7 @@ import "./App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
-const Category = {
+export const Category = {
   Hazard: "Hazard",
   Damage: "Damage",
   Decay: "Decay",
