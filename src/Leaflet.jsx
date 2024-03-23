@@ -10,7 +10,7 @@ import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import { LatLng } from "leaflet";
-import { mapTilerApi } from "./constants";
+import { getPinType, mapTilerApi } from "./constants";
 import { Category } from "./pinInfo";
 import L from "leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -52,9 +52,8 @@ function MapEvents({ setPins, pins }) {
       }
     })();
 
-    console.log(newPinType)
     const pushedPins = pins.concat({
-      pinType: newPinType,
+      pinType: "HouseFlood",
       coordinates: [currCoords.lat, currCoords.lng],
       timePinned: 0,
     });
@@ -84,25 +83,49 @@ function Leaflet({ pins, setPins }) {
   function addPin(pin, icon) {
 
     let coordinates = pin.coordinates
-    let category = pin.pinType.category
-    let name = pin.pinType.name 
+    let category = getPinType(pin.pinType).category
+    let name = getPinType(pin.pinType).name 
     let comment = pin.comment
-        
+
+    {/* const [comments, setComments] = useState([comment])
+    const [newComment, setNewComment] = useState("")
+
+    const handleNewCommentChange = (e) => setNewComment(e.target.value)
+    const addNewComment = () => {
+      if (newComment.trim()) {
+        setComments([...comments, newComment.trim()])
+        setNewComment("")
+      }
+    } */}
+
     return (
       <Marker
         key={coordinates[0] + coordinates[1]}
         icon={icon}
         position={coordinates}
-        riseOnHover
         draggable={false}
       >
-        <Popup>
-          Category: { category } 
+      <Popup>
+        <div>
+          <strong>Category:</strong> {category}
           <br />
-          Description: { name } 
+          <strong>Description:</strong> {name}
           <br />
-          Comment: { comment }
-        </Popup>
+          <strong>Comment:</strong> {comment}
+          <br />
+          {/*<ul>
+            {comments.map((comment, index) => (
+              <li key={index}>{comment}</li>
+            ))}
+          </ul>
+          <textarea
+            value={newComment}
+            onChange={handleNewCommentChange}
+            placeholder="Add a comment"
+          />
+            <button onClick={addNewComment}>Add Comment</button>*/}
+        </div>
+      </Popup>
       </Marker>
     );
   }
@@ -128,11 +151,12 @@ function Leaflet({ pins, setPins }) {
           maxZoom={18}
           minZoom={14}
         />
-        {pins.map((pin) => addPin(pin, makeIcon(pin.pinType.icon)))}
+        {pins.map((pin) => addPin(pin, makeIcon(getPinType(pin.pinType).icon)))}
         <MapEvents setPins={setPins} pins={pins} />
       </MapContainer>
     </>
   );
 }
+
 
 export default Leaflet;

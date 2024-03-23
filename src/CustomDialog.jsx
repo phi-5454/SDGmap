@@ -14,18 +14,19 @@ import * as React from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import pinLibrary, { Category } from "./pinInfo";
+import { getPinType } from "./constants";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const PinMenuItem = (pinType) => {
-  console.log(pinType);
+const PinMenuItem = ( {pinType }) => {
+  console.log(pinType)
   return (
     <div className="flex m-1 p-2 border-stone-700 border-2 rounded-s border-3">
-      {pinType.props.icon}
+      {pinType.icon}
       <div className="p-2 text-l inline-block w-full text-center align-middle">
-        {pinType.props.name}
+        {pinType.name}
       </div>
     </div>
   );
@@ -83,7 +84,12 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       TransitionComponent={Transition}
     >
       <DialogTitle>Add pin</DialogTitle>
-      <PinMenuItem props={pinLibrary.Slippery} />
+
+      {Object.entries(pinLibrary).map((p) => {
+        return (
+          <PinMenuItem pinType={p[1]} key={Math.floor(Math.random() * 100000)} />
+        );
+      })}
       <DialogContent>
         <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
