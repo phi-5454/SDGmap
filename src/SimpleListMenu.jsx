@@ -49,8 +49,7 @@ export default function SimpleListMenu( { pinLibrary }) {
           onClick={handleClickListItem}
         >
           <ListItemText
-            primary="Select alert type"
-            className="border-black p-2 border-2 rounded" 
+            primary={"Select alert type"}
           />
         </ListItemButton>
       </List>
@@ -69,8 +68,14 @@ export default function SimpleListMenu( { pinLibrary }) {
             key={option[1].name}
             selected={index === selectedIndex}
             onClick={(event) => handleMenuItemClick(event, index)}
+            style={{ width: "200px"}}
           >
-            {option[1].name}
+            <div className="flex rounded-s">
+              {option[1].icon}
+              <div className="p-2 text-l inline-block w-full text-center align-middle">
+                {option[1].name}
+              </div>
+            </div>
           </MenuItem>
         ))}
       </Menu>

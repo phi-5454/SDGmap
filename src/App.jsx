@@ -18,12 +18,14 @@ function App() {
   const [pins, setPins] = useState([]);
   const [showIcon, setShowIcon] = useState(true); 
 
-  axios.get("https://api.npoint.io/6702b7c729b99c15d863").then(
+  useEffect(() => {
+    axios.get("https://api.npoint.io/6702b7c729b99c15d863").then(
     (response) => {
-      setPins(response.data.pins)
-      return response.data.pins
+      setPins(response?.data.pins)
+      return response?.data.pins
     }
-  )
+  )}, []);
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {
