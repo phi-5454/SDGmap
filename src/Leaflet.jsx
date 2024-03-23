@@ -1,12 +1,17 @@
 import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet'
 import "leaflet/dist/leaflet.css";
 import { useState } from 'react';
-import { Dialog, DialogTitle } from '@mui/material';
+import CustomDialog from './CustomDialog';
 
 function MapEvents() {
     const [open, setOpen] = useState(false)
     const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 })
  
+    const pinFormSubmit = (e) => {
+        setOpen(false)
+        console.log("submitted")
+    }
+
     const map = useMapEvents({
         click(e) {
             console.log(e.latlng)
@@ -15,11 +20,7 @@ function MapEvents() {
         }
     })
     return (
-        <Dialog open={open} onClose={() => setOpen(false)}>
-            <DialogTitle>Coordinates</DialogTitle>
-            <p>{currCoords.lat}</p>
-            <p>{currCoords.lng}</p>
-        </Dialog>
+        <CustomDialog pinFormSubmit={pinFormSubmit} setOpen={setOpen} open={open} currCoords={currCoords} />
     )
 }
 
