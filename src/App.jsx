@@ -12,7 +12,7 @@ import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function App() {
-  const [pins, setPins] = useState(pinsOnMap);
+  const [pins, setPins] = useState([]);
   const [showIcon, setShowIcon] = useState(true);
 
   axios.get("https://api.npoint.io/6702b7c729b99c15d863").then((response) => {

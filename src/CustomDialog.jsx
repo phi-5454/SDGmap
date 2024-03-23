@@ -15,6 +15,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import pinLibrary, { Category } from "./pinInfo";
 import { getPinType } from "./constants";
+import SimpleListMenu from "./SimpleListMenu";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -85,6 +86,15 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
     >
       <DialogTitle>Add pin</DialogTitle>
 
+      {Object.entries(pinLibrary).map((p) => {
+        return (
+          <PinMenuItem
+            pinType={p[1]}
+            key={Math.floor(Math.random() * 100000)}
+          />
+        );
+      })}
+      <SimpleListMenu pinLibrary={pinLibrary} />
       <DialogContent>
         <BasicMenu category={category} setCategory={setCategory} />
         {/* <Typography variant="subtitle1">
