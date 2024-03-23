@@ -18,11 +18,6 @@ import pinLibrary from "./pinInfo";
 import axios from "axios";
 import { comment } from "postcss";
 
-const customIcon = L.divIcon({
-  className: "custom-icon",
-  html: renderToStaticMarkup(pinLibrary.Slippery.icon),
-  iconSize: [50, 50], // Adjust the icon size as needed
-});
 
 const makeIcon = (markup) => {
   return L.divIcon({
@@ -36,20 +31,21 @@ function MapEvents({ setPins, pins }) {
   const [open, setOpen] = useState(false);
   const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 });
 
-  const pinFormSubmit = async (category, comment) => {
-    setOpen(false)
-
+  const pinFormSubmit = async (category, comment, pinIndex) => {
+    setOpen(false);
 
     const pinTypes = Object.keys(pinLibrary);
     const randomPinType = pinTypes[Math.floor(Math.random() * pinTypes.length)];
     const pushedPins = pins.concat({
-      pinType: randomPinType,
+      pinType: pinTypes[pinIndex],
       coordinates: [currCoords.lat, currCoords.lng],
       timePinned: 0,
-      comment
+      comment,
     });
-    
-    await axios.post("https://api.npoint.io/6702b7c729b99c15d863", { pins: pushedPins })
+
+    await axios.post("https://api.npoint.io/6702b7c729b99c15d863", {
+      pins: pushedPins,
+    });
     setPins(pushedPins);
   };
 
@@ -70,7 +66,6 @@ function MapEvents({ setPins, pins }) {
   );
 }
 
-
 function AddPin({pin, pins, icon}) {
 
   let coordinates = pin.coordinates
@@ -83,14 +78,14 @@ function AddPin({pin, pins, icon}) {
     textVar = pin.comment
   }
 
-  if (pin.time){
-    timeVar = pin.time
+  if (pin.time) {
+    timeVar = pin.time;
   }
 
   const commentObj = {
     text: textVar,
-    time: timeVar
-  }
+    time: timeVar,
+  };
 
   console.log(pin)
 
@@ -100,11 +95,10 @@ function AddPin({pin, pins, icon}) {
   const handleNewCommentChange = (e) => setNewComment(e.target.value)
   const addNewComment = async () => {
     if (newComment.trim()) {
-      
       const commentObj = {
         text: newComment.trim(),
         time: new Date().toDateString(),
-      }
+      };
 
       console.log(pin.userComments.concat(commentObj))
 
@@ -116,7 +110,7 @@ function AddPin({pin, pins, icon}) {
       setComments([...comments, commentObj])
       setNewComment("")
     }
-  } 
+  };
 
   return (
     <Marker
@@ -125,33 +119,37 @@ function AddPin({pin, pins, icon}) {
       position={coordinates}
       draggable={false}
     >
-    <Popup>
-      <div>
-        <strong>Category:</strong> {category}
-        <br />
-        <strong>Description:</strong> {name}
-        <br />
-        <strong>Comment:</strong>
-        <br />
-        <ul>
-          {comments.map((commentObj, index) => (
-            <li key={index}>{commentObj.time}: {commentObj.text}</li>
-          ))}
-        </ul>
-        <textarea
-          value={newComment}
-          onChange={handleNewCommentChange}
-          placeholder="Add a comment"
-        />
-          <button onClick={addNewComment}>Add Comment</button>
-      </div>
-    </Popup>
+      <Popup>
+        <div>
+          <strong>Category:</strong> {category}
+          <br />
+          <strong>Description:</strong> {name}
+          <br />
+          <strong>--------------------------------------------------------------------</strong>
+          <strong>Comments:</strong>
+          <ul>
+            {comments.map((commentObj, index) => (
+              <li key={index}>
+                {commentObj.time}: {commentObj.text}
+              </li>
+            ))}
+          </ul>
+          <textarea
+            value={newComment}
+            onChange={handleNewCommentChange}
+            placeholder="Add a comment"
+          />
+          <br/>
+          <button onClick={addNewComment}>Send</button>
+        </div>
+      </Popup>
     </Marker>
   );
 }
 
 function Leaflet({ pins, setPins }) {
   const position = [60.186449, 24.828243];
+
 
   const bounds = [
     new L.LatLng(60.261997, 24.571249),
@@ -174,14 +172,17 @@ function Leaflet({ pins, setPins }) {
           maxZoom={18}
           minZoom={14}
         />
-        {pins.map((pin, index) =>
-          <AddPin key={index} pins={pins} pin={pin} icon={makeIcon(getPinType(pin.pinType).icon)} />
-          )}
+        {pins.map((pin, index) => (
+          <AddPin
+            key={index}
+            pin={pin}
+            icon={makeIcon(getPinType(pin.pinType).icon)}
+          />
+        ))}
         <MapEvents setPins={setPins} pins={pins} />
       </MapContainer>
     </>
   );
 }
-
 
 export default Leaflet;

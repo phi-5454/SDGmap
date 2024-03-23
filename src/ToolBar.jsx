@@ -7,14 +7,20 @@ import Typography from "@mui/material/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
-function CustomToolbar() {
+function CustomToolbar({ onChange }) {
   // State to manage the visibility of the toolbar content
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isFiltered, setIsFiltered] = useState(false);
+
 
   // Function to toggle the toolbar expansion state
   const toggleToolbar = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const toggleFilter = () => {
+   setIsFiltered(!isFiltered);
+  }
 
   return (
     <Box sx={{ position: "fixed", width: 500, zIndex: 2 }}>
@@ -49,8 +55,18 @@ function CustomToolbar() {
                   edge="start"
                   color="inherit"
                   aria-label="cat"
+                  onClick={() => {
+                    if (isFiltered) {
+                      setIsFiltered(false);
+                      onChange("")
+                    }
+                    else {
+                      setIsFiltered(true);
+                      onChange("HouseFlood");
+                    }
+                  }}
                 >
-                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faCat} />
+                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faHouseFloodWater} color={`${isFiltered ? "black" : "white"}`} />
                 </IconButton>
               </Box>
               <Box>
