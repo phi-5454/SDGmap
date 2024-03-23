@@ -23,7 +23,7 @@ function App() {
       <Leaflet pins={pins} setPins={setPins} />
      
       <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar className="" position="relative">
       <Toolbar>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mr: 2 }}>
         <IconButton
