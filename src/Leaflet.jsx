@@ -19,22 +19,23 @@ import pinLibrary from "./pinInfo";
 
 const customIcon = L.divIcon({
   className: "custom-icon",
-  html: renderToStaticMarkup(pinLibrary[0].icon),
+  html: renderToStaticMarkup(pinLibrary.Slippery.icon),
   iconSize: [30, 30], // Adjust the icon size as needed
 });
 
 function MapEvents({ setPins, pins }) {
+  //console.log(pinLibrary);
   const [open, setOpen] = useState(false);
   const [currCoords, setCurrCoords] = useState({ lat: 0, lng: 0 });
 
   const pinFormSubmit = (e) => {
     setOpen(false);
     console.log(currCoords);
-    console.log(pins);
+    //console.log(pins);
     const pushedPins = pins.concat({
       coordinates: [currCoords.lat, currCoords.lng],
     });
-    console.log(pushedPins);
+    //console.log(pushedPins);
     setPins(pushedPins);
   };
 
@@ -60,6 +61,7 @@ function Leaflet({ pins, setPins }) {
   const position = [60.186449, 24.828243];
 
   function addPin(coordinates, icon) {
+    //console.log(coordinates);
     return (
       <Marker
         key={Math.random(0, 100)}
