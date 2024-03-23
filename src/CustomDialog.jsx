@@ -39,8 +39,6 @@ function BasicMenu({ category, setCategory }) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (category) => {
-    console.log(category);
-    setCategory(category);
     setAnchorEl(null);
   };
 
@@ -74,13 +72,11 @@ function BasicMenu({ category, setCategory }) {
   );
 }
 
-
-
 function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
   const [category, setCategory] = React.useState(null);
+  const [pinTypeIndex, setPinIndex] = React.useState(0);
   const [textValue, setTextValue] = React.useState("");
 
-  console.log(textValue)
   return (
     <Dialog
       open={open}
@@ -93,7 +89,7 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
         Add pin
       </DialogTitle>
 
-      <SimpleListMenu pinLibrary={pinLibrary} />
+      <SimpleListMenu pinLibrary={pinLibrary} pinSetFunc={setPinIndex} />
       <DialogContent>
         {/* <Typography variant="subtitle1">
           Latitude: {currCoords.lat.toFixed(2)}
@@ -101,11 +97,20 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
         <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>*/}
         <FormControl>
           <InputLabel htmlFor="my-input">Description</InputLabel>
-          <Input id="my-input" aria-describedby="my-helper-text" value={textValue} onChange={e => setTextValue(e.target.value)}/>
+          <Input
+            id="my-input"
+            aria-describedby="my-helper-text"
+            value={textValue}
+            onChange={(e) => setTextValue(e.target.value)}
+          />
           <FormHelperText id="my-helper-text">
             Describe the situation.
           </FormHelperText>
-          <Button onClick={() => pinFormSubmit(category, textValue)}>Add</Button>
+          <Button
+            onClick={() => pinFormSubmit(category, textValue, pinTypeIndex)}
+          >
+            Add
+          </Button>
         </FormControl>
       </DialogContent>
     </Dialog>
