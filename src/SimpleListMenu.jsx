@@ -4,6 +4,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { Typography } from '@mui/material';
 
 const options = [
   'Show some love to MUI',
@@ -50,6 +51,8 @@ export default function SimpleListMenu( { pinLibrary }) {
         >
           <ListItemText
             primary={"Select alert type"}
+            primaryTypographyProps={{ fontSize: "25px"}}
+            style={{ textAlign: "center" }}
           />
         </ListItemButton>
       </List>

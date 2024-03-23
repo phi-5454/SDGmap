@@ -21,9 +21,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const PinMenuItem = ( {pinType }) => {
+const PinMenuItem = ({ pinType }) => {
   return (
-    <div className="flex m-1 p-2 rounded-s border-3">
+    <div className="flex p-2 border-stone-700 border-2 rounded-lg ">
       {pinType.icon}
       <div className="p-2 text-l inline-block w-full text-center align-middle">
         {pinType.name}
@@ -39,6 +39,7 @@ function BasicMenu({ category, setCategory }) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (category) => {
+    console.log(category);
     setCategory(category);
     setAnchorEl(null);
   };
@@ -52,7 +53,7 @@ function BasicMenu({ category, setCategory }) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        {(!category) ? "Category" : category}
+        {!category ? "Category" : category}
       </Button>
       <Menu
         id="basic-menu"
@@ -73,31 +74,38 @@ function BasicMenu({ category, setCategory }) {
   );
 }
 
+
+
 function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
   const [category, setCategory] = React.useState(null);
+  const [textValue, setTextValue] = React.useState("");
+
+  console.log(textValue)
   return (
     <Dialog
       open={open}
-      onClose={() => setOpen(false)}
+      onClose={() => {
+        setOpen(false);
+      }}
       TransitionComponent={Transition}
     >
-      <DialogTitle>Add pin</DialogTitle>
+      <DialogTitle variant="h4" style={{ textAlign: "center" }}>
+        Add pin
+      </DialogTitle>
 
-      {Object.entries(pinLibrary).map((p) => {
-        return (
-          <PinMenuItem pinType={p[1]} key={Math.floor(Math.random() * 100000)} />
-        );
-      })}
-      <SimpleListMenu pinLibrary={pinLibrary}/>
+      <SimpleListMenu pinLibrary={pinLibrary} />
       <DialogContent>
-        {/* <BasicMenu category={category} setCategory={setCategory} /> */}
+        {/* <Typography variant="subtitle1">
+          Latitude: {currCoords.lat.toFixed(2)}
+        </Typography> 
+        <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>*/}
         <FormControl>
           <InputLabel htmlFor="my-input">Description</InputLabel>
-          <Input id="my-input" aria-describedby="my-helper-text" />
+          <Input id="my-input" aria-describedby="my-helper-text" value={textValue} onChange={e => setTextValue(e.target.value)}/>
           <FormHelperText id="my-helper-text">
             Describe the situation.
           </FormHelperText>
-          <Button onClick={() => pinFormSubmit(category)}>Add</Button>
+          <Button onClick={() => pinFormSubmit(category, textValue)}>Add</Button>
         </FormControl>
       </DialogContent>
     </Dialog>
