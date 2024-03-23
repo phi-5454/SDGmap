@@ -77,6 +77,10 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
   const [pinTypeIndex, setPinIndex] = React.useState(0);
   const [textValue, setTextValue] = React.useState("");
 
+  const pinArr = Object.entries(pinLibrary).map((option, index) => {
+    return [option[1].icon, option[1].name];
+  });
+
   return (
     <Dialog
       open={open}
@@ -88,7 +92,12 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
       <DialogTitle variant="h4" style={{ textAlign: "center" }}>
         Add pin
       </DialogTitle>
-
+      <div className="flex rounded-s">
+        {pinArr[pinTypeIndex][0]}
+        <div className="p-2 text-l inline-block w-full text-center align-middle">
+          {pinArr[pinTypeIndex][1]}
+        </div>
+      </div>
       <SimpleListMenu pinLibrary={pinLibrary} pinSetFunc={setPinIndex} />
       <DialogContent>
         {/* <Typography variant="subtitle1">
