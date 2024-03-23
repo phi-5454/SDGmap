@@ -42,5 +42,9 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
   );
 }
 
+const pinMenuItem = () => {
+  return <div></div>;
+};
+
 export default CustomDialog;
 
