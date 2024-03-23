@@ -18,11 +18,6 @@ import pinLibrary from "./pinInfo";
 import axios from "axios";
 import { comment } from "postcss";
 
-const customIcon = L.divIcon({
-  className: "custom-icon",
-  html: renderToStaticMarkup(pinLibrary.Slippery.icon),
-  iconSize: [50, 50], // Adjust the icon size as needed
-});
 
 const makeIcon = (markup) => {
   return L.divIcon({
@@ -120,8 +115,8 @@ function AddPin({ pin, icon }) {
           <br />
           <strong>Description:</strong> {name}
           <br />
-          <strong>Comment:</strong>
-          <br />
+          <strong>--------------------------------------------------------------------</strong>
+          <strong>Comments:</strong>
           <ul>
             {comments.map((commentObj, index) => (
               <li key={index}>
@@ -134,7 +129,8 @@ function AddPin({ pin, icon }) {
             onChange={handleNewCommentChange}
             placeholder="Add a comment"
           />
-          <button onClick={addNewComment}>Add Comment</button>
+          <br/>
+          <button onClick={addNewComment}>Send</button>
         </div>
       </Popup>
     </Marker>
@@ -144,56 +140,6 @@ function AddPin({ pin, icon }) {
 function Leaflet({ pins, setPins }) {
   const position = [60.186449, 24.828243];
 
-  function addPin(pin, icon) {
-    let coordinates = pin.coordinates;
-    let category = getPinType(pin.pinType).category;
-    let name = getPinType(pin.pinType).name;
-    let comment = pin.comment;
-
-    {
-      /* const [comments, setComments] = useState([comment])
-    const [newComment, setNewComment] = useState("")
-
-    const handleNewCommentChange = (e) => setNewComment(e.target.value)
-    const addNewComment = () => {
-      if (newComment.trim()) {
-        setComments([...comments, newComment.trim()])
-        setNewComment("")
-      }
-    } */
-    }
-
-    return (
-      <Marker
-        key={coordinates[0] + coordinates[1]}
-        icon={icon}
-        position={coordinates}
-        draggable={false}
-      >
-        <Popup>
-          <div>
-            <strong>Category:</strong> {category}
-            <br />
-            <strong>Description:</strong> {name}
-            <br />
-            <strong>Comment:</strong> {comment}
-            <br />
-            {/*<ul>
-            {comments.map((comment, index) => (
-              <li key={index}>{comment}</li>
-            ))}
-          </ul>
-          <textarea
-            value={newComment}
-            onChange={handleNewCommentChange}
-            placeholder="Add a comment"
-          />
-            <button onClick={addNewComment}>Add Comment</button>*/}
-          </div>
-        </Popup>
-      </Marker>
-    );
-  }
 
   const bounds = [
     new L.LatLng(60.261997, 24.571249),
