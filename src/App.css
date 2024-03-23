@@ -4,6 +4,58 @@
   height: 100%;
 }
 
+.fade-out{
+  transition: 1s;
+}
+
+@keyframes colorChange {
+  0% { color: #d8bc1b; }
+  25% { color: #c35e06; }
+  50% { color: #c1120f; }
+  75% { color: #c35e06; }
+  100% { color: #d8bc1b; }
+}
+
+.site-name {
+  position: fixed;
+  top: calc(40% + 20%); /* 50% + 20% accounts for the loading screen's vertical centering and its own height */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, 10%); /* Adjust horizontal centering considering its own width */
+  
+  font-size: 3em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  z-index: 1001;
+  animation: colorChange 1s infinite;
+}
+
+.loading-screen-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(16, 25, 54);
+  z-index: 999;
+  transition: 1s;
+}
+
+.loading-screen {
+  position: fixed;
+  top: calc(40% - 20%);
+  left: calc(50% - 20%);
+  width: 40%;
+  height: 40%;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: 1s;
+}
+
+
 .leaflet-container {
   position: absolute;
   width: 100%;
@@ -15,6 +67,7 @@
   height: 100%;
   width: 100%;
 }
+
 
 
 
