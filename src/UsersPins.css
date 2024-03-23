@@ -22,14 +22,15 @@
 }
 
 .pinbar.collapsed {
-
+  position: fixed;
   height: 80px; /* Smaller height for the collapsed state */
   
   transition: top 0.2s ease-in-out, height 0.2s ease-in-out; /* Include height in the transition if it changes */
 }
 
 .pinbar.expanded {
-
+  position: fixed;
+  height: 300px; /* Height to expand */
   transition: top 0.2s ease-in-out, height 0.2s ease-in-out;
 }
 

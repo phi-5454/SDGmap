@@ -21,7 +21,7 @@ function UsersPins() {
         <AppBar position="fixed">
           <Toolbar className={`pinbar ${isExpanded ? 'expanded' : 'collapsed'}`}>
             {/* Menu Button always visible */}
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 1 }}>
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 1 }}>
                 <IconButton
                     size="large"
                     edge="start"
@@ -58,7 +58,7 @@ function UsersPins() {
                   </IconButton>
                 </Box>
                 <Typography className='pinbar-icon' variant="h6" component="div">
-                    App Name
+                    My pins
                 </Typography>
               </>
             )}
