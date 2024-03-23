@@ -43,7 +43,7 @@ const pinLibrary = {
   Slippery: {
     key: 1,
     category: Category.Hazard,
-    name: "Slippery walkway",
+    name: "Slippery street",
     lifetime: -1,
     icon: (
       <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
@@ -60,7 +60,7 @@ const pinLibrary = {
     lifetime: -1,
     icon: (
       <div className="icon-container bg-stone-700 rounded-xl drop-shadow">
-        <div className="icon-text text-2xl  p-1  text-stone-200">
+        <div className="icon-text text-2xl  p-1 text-stone-200">
           <FontAwesomeIcon icon={fas.faPersonFalling} />
         </div>
       </div>
