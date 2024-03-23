@@ -2,6 +2,8 @@ import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-lea
 import "leaflet/dist/leaflet.css";
 import { useState } from 'react';
 import CustomDialog from './CustomDialog';
+import { LatLng } from 'leaflet';
+import { mapTilerApi } from './constants';
 
 function MapEvents() {
     const [open, setOpen] = useState(false)
@@ -19,6 +21,8 @@ function MapEvents() {
             setOpen(true)
         }
     })
+
+    map.setMaxBounds(map.getBounds())
     return (
         <CustomDialog pinFormSubmit={pinFormSubmit} setOpen={setOpen} open={open} currCoords={currCoords} />
     )
@@ -34,13 +38,19 @@ function Leaflet({ pins, setPins }) {
         )
     }
 
+    const bounds = [
+        new L.LatLng(60.191730, 24.810995), 
+        new L.LatLng(60.176836, 24.848636)
+    ]
+
     return (
         <>
-            <MapContainer center={position} zoom={20} class="full-height-map">
+            <MapContainer center={position} maxBounds={bounds} zoom={20} class="full-height-map">
                 <TileLayer
-                bounds={[[60.191730, 24.810995], [60.176836, 24.848636]]}
+                bounds={bounds}
                 attribution='Olli Glorioso'
-                url="https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=o28q90KHszO8WjJEWBy1"
+                
+                url={mapTilerApi}
                 />
                 {pins.map((pin) => addPin(pin.coordinates))}
                 <MapEvents />
