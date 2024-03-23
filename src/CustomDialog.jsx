@@ -21,7 +21,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 const PinMenuItem = ({ pinType }) => {
-  console.log(pinType);
   return (
     <div className="flex p-2 border-stone-700 border-2 rounded-lg ">
       {pinType.icon}
@@ -52,9 +51,7 @@ function BasicMenu({ category, setCategory }) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Typography variant="subtitle1">
-          {!category || false ? "Category" : category}
-        </Typography>
+        {!category ? "Category" : category}
       </Button>
       <Menu
         id="basic-menu"
