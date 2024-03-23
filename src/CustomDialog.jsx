@@ -38,7 +38,6 @@ function BasicMenu({ category, setCategory }) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = (category) => {
-    debugger;
     console.log(category);
     setCategory(category);
     setAnchorEl(null);
