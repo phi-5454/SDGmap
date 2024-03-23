@@ -11,15 +11,20 @@ import {
   DialogContent,
 } from "@mui/material";
 import * as React from "react";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { Category } from "./pinInfo";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function BasicMenu( { category } ) {
+const pinMenuItem = (pinType) => {
+  return;
+  <div></div>;
+};
+
+function BasicMenu({ category }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -33,9 +38,9 @@ function BasicMenu( { category } ) {
     <div>
       <Button
         id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
         <Typography variant="subtitle1">
@@ -48,7 +53,7 @@ function BasicMenu( { category } ) {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          'aria-labelledby': 'basic-button',
+          "aria-labelledby": "basic-button",
         }}
       >
         {Object.keys(Category).map((category) => (
@@ -84,15 +89,9 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
           </FormHelperText>
           <Button onClick={() => pinFormSubmit()}>Add</Button>
         </FormControl>
-        
       </DialogContent>
     </Dialog>
   );
 }
 
-const pinMenuItem = () => {
-  return <div></div>;
-};
-
 export default CustomDialog;
-
