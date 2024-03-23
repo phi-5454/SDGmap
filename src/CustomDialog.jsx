@@ -88,11 +88,7 @@ function CustomDialog({ open, setOpen, currCoords, pinFormSubmit }) {
         );
       })}
       <DialogContent>
-        <BasicMenu category={category} setCategory={setCategory} />
-        {/* <Typography variant="subtitle1">
-          Latitude: {currCoords.lat.toFixed(2)}
-        </Typography> 
-        <Typography>Longitude: {currCoords.lng.toFixed(2)}</Typography>*/}
+        {/* <BasicMenu category={category} setCategory={setCategory} /> */}
         <FormControl>
           <InputLabel htmlFor="my-input">Description</InputLabel>
           <Input id="my-input" aria-describedby="my-helper-text" />

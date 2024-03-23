@@ -45,7 +45,7 @@ function App() {
         {showIcon && (
           <div className="loading-screen-background">
             <FontAwesomeIcon className="loading-screen" icon={faMapPin} bounce color="#FF5733"/>
-            <h1 className="site-name">CityWorkshop</h1>
+            <h1 className="site-name">CityAlert</h1>
           </div>
         )}
         <animated.div className="fade-out" style={appProps}>
