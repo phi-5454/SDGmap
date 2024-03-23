@@ -49,10 +49,11 @@ function MapEvents({ setPins, pins }) {
       } else if (category === Category.Other) {
         return pinLibrary.ExposedPower;
       } else {
-        return pinLibrary.SreetFlood;
+        return pinLibrary.StreetFlood;
       }
     })();
 
+    console.log(newPinType)
     const pushedPins = pins.concat({
       pinType: newPinType,
       coordinates: [currCoords.lat, currCoords.lng],
