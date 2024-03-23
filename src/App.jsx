@@ -1,6 +1,11 @@
 import "./App.css";
 import Leaflet from "./Leaflet";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+const element = <FontAwesomeIcon icon={fas.faHouse} />;
+
 function App() {
   return (
     <>
@@ -11,6 +16,7 @@ function App() {
         </p>
       </div>
       <Leaflet />
+      <FontAwesomeIcon icon={fas.faHouse} />
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
