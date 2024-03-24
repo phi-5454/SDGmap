@@ -9,11 +9,11 @@
 }
 
 @keyframes colorChange {
-  0% { color: #d8bc1b; }
-  25% { color: #c35e06; }
+  0% { color: #c35e06; }
+  25% { color: #b94101; }
   50% { color: #c1120f; }
-  75% { color: #c35e06; }
-  100% { color: #d8bc1b; }
+  75% { color: #b94101; }
+  100% { color: #c35e06; }
 }
 
 .site-name {
