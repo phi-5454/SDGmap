@@ -108,7 +108,6 @@ function AddPin({ pin, pins, icon }) {
   let textVar = "";
   let timeVar = "";
 
-  console.log(pin.comment);
   if (pin.comment) {
     textVar = pin.comment;
   }
