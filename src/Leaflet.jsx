@@ -17,7 +17,43 @@ import { renderToStaticMarkup } from "react-dom/server";
 import pinLibrary from "./pinInfo";
 import axios from "axios";
 import { comment } from "postcss";
+import styled from "styled-components";
 
+const theme = {
+  blue: {
+    default: "#3f51b5",
+    hover: "#283593",
+  },
+  pink: {
+    default: "#e91e63",
+    hover: "#ad1457",
+  },
+};
+
+const Button = styled.button`
+  background-color: ${(props) => theme[props.theme].default};
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  outline: 0;
+  border: 0; 
+  text-transform: uppercase;
+  margin: 10px 0px;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px lightgray;
+  transition: ease background-color 250ms;
+  &:hover {
+    background-color: ${(props) => theme[props.theme].hover};
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+`;
+
+Button.defaultProps = {
+  theme: "blue",
+};
 
 const makeIcon = (markup) => {
   return L.divIcon({
@@ -64,6 +100,7 @@ function MapEvents({ setPins, pins }) {
     />
   );
 }
+
 
 function AddPin({pin, pins, icon}) {
 
@@ -122,28 +159,29 @@ function AddPin({pin, pins, icon}) {
           <strong>Category:</strong> {category}
           <br />
           <strong>Description:</strong> {name}
-          <br />
-          <strong>--------------------------------------------------------------------</strong>
-          <strong>Comments:</strong>
-          <ul>
-            {comments.map((commentObj, index) => (
-              <li key={index}>
-                {commentObj.time}: {commentObj.text}
-              </li>
-            ))}
-          </ul>
-          <textarea
-            value={newComment}
-            onChange={handleNewCommentChange}
-            placeholder="Add a comment"
-          />
-          <br/>
-          <button onClick={addNewComment}>Send</button>
+          <section>
+            <strong>Comments:</strong>
+            <ul>
+              {comments.map((commentObj, index) => (
+                <li key={index}>
+                  <time>{commentObj.time}</time>: {commentObj.text}
+                </li>
+              ))}
+            </ul>
+            <textarea
+              value={newComment}
+              onChange={handleNewCommentChange}
+              placeholder="Add a comment"
+            ></textarea>
+          </section>
+          <Button onClick={addNewComment}>Send</Button>
         </div>
       </Popup>
     </Marker>
   );
 }
+
+
 
 function Leaflet({ pins, setPins }) {
   const position = [60.186449, 24.828243];
@@ -152,6 +190,7 @@ function Leaflet({ pins, setPins }) {
     new L.LatLng(60.261997, 24.571249),
     new L.LatLng(60.080936, 25.191078),
   ];
+
 
   return (
     <>
