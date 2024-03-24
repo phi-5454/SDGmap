@@ -12,6 +12,8 @@ function CustomToolbar({ onChange }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isFilteredHouseFlood, setIsFilteredHouseFlood] = useState(false);
   const [isFilteredStreetFlood, setIsFilteredStreetFlood] = useState(false);
+  const [isFilteredWildAnimal, setIsFilteredWildAnimal] = useState(false);
+
 
   // Function to toggle the toolbar expansion state
   const toggleToolbar = () => {
@@ -26,9 +28,14 @@ function CustomToolbar({ onChange }) {
     setIsFilteredStreetFlood(!isFilteredStreetFlood);
   }
 
+  const toggleFilterWildAnimal = () => {
+    setIsFilteredWildAnimal(!isFilteredWildAnimal);
+  }
+
   const forceAllFiltersOff = () => {
     setIsFilteredHouseFlood(false);
     setIsFilteredStreetFlood(false);
+    setIsFilteredWildAnimal(false);
   }
 
 
@@ -98,6 +105,27 @@ function CustomToolbar({ onChange }) {
                   }}
                 >
                   <FontAwesomeIcon className="toolbar-icon" icon={fas.faWater} color={`${isFilteredStreetFlood ? "black" : "white"}`} />
+                </IconButton>
+              </Box>
+              <Box>
+                <IconButton
+                  className="toolbar-icon"
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="cat"
+                  onClick={() => {
+                    if (isFilteredWildAnimal) {
+                      onChange("")
+                    }
+                    else {
+                      onChange("WildAnimal");
+                    }
+                    forceAllFiltersOff();
+                    toggleFilterWildAnimal();
+                  }}
+                >
+                  <FontAwesomeIcon className="toolbar-icon" icon={fas.faHippo} color={`${isFilteredWildAnimal ? "black" : "white"}`} />
                 </IconButton>
               </Box>
               
