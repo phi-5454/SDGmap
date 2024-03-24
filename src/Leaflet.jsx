@@ -36,7 +36,7 @@ const Button = styled.button`
   padding: 5px 15px;
   border-radius: 5px;
   outline: 0;
-  border: 0; 
+  border: 0;
   text-transform: uppercase;
   margin: 10px 0px;
   cursor: pointer;
@@ -101,17 +101,16 @@ function MapEvents({ setPins, pins }) {
   );
 }
 
+function AddPin({ pin, pins, icon }) {
+  let coordinates = pin.coordinates;
+  let category = getPinType(pin.pinType).category;
+  let name = getPinType(pin.pinType).name;
+  let textVar = "";
+  let timeVar = "";
 
-function AddPin({pin, pins, icon}) {
-
-  let coordinates = pin.coordinates
-  let category = getPinType(pin.pinType).category
-  let name = getPinType(pin.pinType).name 
-  let textVar = ""
-  let timeVar = ""
-  
-  if (pin.comment){
-    textVar = pin.comment
+  console.log(pin.comment);
+  if (pin.comment) {
+    textVar = pin.comment;
   }
 
   if (pin.time) {
@@ -123,11 +122,14 @@ function AddPin({pin, pins, icon}) {
     time: timeVar,
   };
 
+  const [comments, setComments] = useState([
+    ...(pin.comment
+      ? [commentObj].concat(pin.userComments || [])
+      : pin.userComments || []),
+  ]);
+  const [newComment, setNewComment] = useState([]);
 
-  const [comments, setComments] = useState([...pin.userComments || []])
-  const [newComment, setNewComment] = useState([])
-
-  const handleNewCommentChange = (e) => setNewComment(e.target.value)
+  const handleNewCommentChange = (e) => setNewComment(e.target.value);
   const addNewComment = async () => {
     if (newComment.trim()) {
       const commentObj = {
@@ -135,15 +137,19 @@ function AddPin({pin, pins, icon}) {
         time: new Date().toDateString(),
       };
 
-      console.log(pins)
+      console.log(pins);
 
-      pin.userComments = (pin.userComments || []).concat(commentObj)
-      const newPins = pins.map((p) => p.coordinates === coordinates ? pin : p)
+      pin.userComments = (pin.userComments || []).concat(commentObj);
+      const newPins = pins.map((p) =>
+        p.coordinates === coordinates ? pin : p,
+      );
 
-      await axios.post("https://api.npoint.io/6702b7c729b99c15d863", { pins: newPins })
+      await axios.post("https://api.npoint.io/6702b7c729b99c15d863", {
+        pins: newPins,
+      });
 
-      setComments([...comments, commentObj])
-      setNewComment("")
+      setComments([...comments, commentObj]);
+      setNewComment("");
     }
   };
 
@@ -164,7 +170,13 @@ function AddPin({pin, pins, icon}) {
             <ul>
               {comments.map((commentObj, index) => (
                 <li key={index}>
-                  <time>{commentObj.time}</time>: {commentObj.text}
+                  {commentObj.time ? (
+                    <>
+                      <time>{commentObj.time}</time>: {commentObj.text}
+                    </>
+                  ) : (
+                    <>{commentObj.text}</>
+                  )}
                 </li>
               ))}
             </ul>
@@ -181,8 +193,6 @@ function AddPin({pin, pins, icon}) {
   );
 }
 
-
-
 function Leaflet({ pins, setPins }) {
   const position = [60.186449, 24.828243];
 
@@ -190,7 +200,6 @@ function Leaflet({ pins, setPins }) {
     new L.LatLng(60.261997, 24.571249),
     new L.LatLng(60.080936, 25.191078),
   ];
-
 
   return (
     <>
