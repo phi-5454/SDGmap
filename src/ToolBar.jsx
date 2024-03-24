@@ -18,10 +18,13 @@ function CustomToolbar({ onChange }) {
   // Function to toggle the toolbar expansion state
   const toggleToolbar = () => {
     setIsExpanded(!isExpanded);
+    forceAllFiltersOff();
+    
   };
 
   const toggleFilterHouseFlood = () => {
    setIsFilteredHouseFlood(!isFilteredHouseFlood);
+   
   }
 
   const toggleFilterStreetFlood = () => {
@@ -57,7 +60,10 @@ function CustomToolbar({ onChange }) {
               edge="start"
               color="inherit"
               aria-label="menu"
-              onClick={toggleToolbar} // Attach the toggle function to the menu button
+              onClick={() => {
+                toggleToolbar()
+                onChange("")
+              }} // Attach the toggle function to the menu button
             >
               <FontAwesomeIcon icon={fas.faFilter} />
             </IconButton>
